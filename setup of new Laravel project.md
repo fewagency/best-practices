@@ -1,13 +1,11 @@
-# Setup of a new [Laravel](http://laravel.com) project
+# Recipe for setup of a new [Laravel](http://laravel.com) project
 With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
 ## Prerequisites
 - Composer needed on your local machine for recommended Homestead install
 https://getcomposer.org/doc/00-intro.md#globally
-
 - Homestead on your local machine - recommended method: _With Composer + PHP Tool_
 http://laravel.com/docs/5.0/homestead#installation-and-setup
-
 - Laravel installer on the Homestead machine
 http://laravel.com/docs/5.0/installation#install-laravel
 
@@ -15,6 +13,7 @@ http://laravel.com/docs/5.0/installation#install-laravel
 
 ### ssh into Homestead from your local machine
 > sudo composer self-update
+
 > composer global update
 
 cd to your code/projects folder when in Homestead via ssh, e.g. `cd ~/Code`
@@ -23,9 +22,8 @@ cd to your code/projects folder when in Homestead via ssh, e.g. `cd ~/Code`
 Exit Homestead ssh session
 
 ### On your local machine
-Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) - note the Homestead ip, and your chosen domain name. You may add a database too.
-
-Add the Homestead ip and the chosen domain to your /etc/hosts
+- Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database too.
+- Add the Homestead ip and the chosen domain to your /etc/hosts
 
 ### In PhpStorm
 Create a new project, select Location & set Project type to PHP Empty Project, then OK and click Yes to create a project from existing sources instead (Don’t configure namespace roots at this point).
@@ -59,6 +57,7 @@ Exit preferences and create a PhpStorm Run configuration via Run > Edit configur
 ### ssh into Homestead
 cd to the project folder
 > chmod u+x artisan
+
 > composer require barryvdh/laravel-ide-helper --dev
 
 ### In PhpStorm
@@ -82,11 +81,11 @@ Commit "ide-helper setup"
 
 ### ssh into Homestead
 cd to the project folder
-```bash
-composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
-vendor/bin/behat --init
-cp .env.example .env.behat
-```
+> composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
+
+> vendor/bin/behat --init
+
+> cp .env.example .env.behat
 
 Create behat.yml in project root and enter:
 ```yml
