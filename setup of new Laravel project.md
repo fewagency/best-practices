@@ -1,5 +1,5 @@
-# HOW TO SET UP A NEW LARAVEL PROJECT
-With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if Blackfire is configured), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
+# Setup of a new [Laravel](http://laravel.com) project
+With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
 ## Prerequisites
 Composer needed on your local machine for recommended Homestead install
@@ -110,9 +110,11 @@ Commit "PHPUnit setup"
 
 Optional: Remove Laravel scaffolding - ssh into Homestead, cd to the project folder
 > php artisan fresh
+
 (Caution - This call removes edits from AppServiceProvider::register() that will need to be re-added before committing!)
 …and commit "Removed Laravel scaffolding"
 
 Optional: Namespace application - ssh into Homestead, cd to the project folder
 > php artisan app:name APPNAME
+
 …and commit "App namespacing"
