@@ -1,8 +1,7 @@
 # Configure [PhpStorm](https://www.jetbrains.com/phpstorm/) for a [Laravel](http://laravel.com) project
 
 In PhpStorm preferences:
-* Tools > Vagrant
-Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
+* Tools > Vagrant - Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
 
 Exit preferences and load the new Homestead configuration via Tools > Vagrant > Provision
 
