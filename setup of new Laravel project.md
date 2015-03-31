@@ -2,24 +2,24 @@
 With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
 ## Prerequisites
-Composer needed on your local machine for recommended Homestead install
+- Composer needed on your local machine for recommended Homestead install
 https://getcomposer.org/doc/00-intro.md#globally
 
-Homestead on your local machine - recommended method: With Composer + PHP Tool
+- Homestead on your local machine - recommended method: With Composer + PHP Tool
 http://laravel.com/docs/5.0/homestead#installation-and-setup
 
-Laravel installer on the Homestead machine
+- Laravel installer on the Homestead machine
 http://laravel.com/docs/5.0/installation#install-laravel
 
-
-ssh into Homestead
+## Steps
+- ssh into Homestead
 > sudo composer self-update
 > composer global update
 
-cd to code/projects folder when in Homestead via ssh, e.g. cd ~/Code
+- cd to code/projects folder when in Homestead via ssh, e.g. cd ~/Code
 > laravel new PROJECTNAME
 
-Exit Homestead ssh session
+- Exit Homestead ssh session
 
 Add the new site to your ~/.homestead/Homestead.yaml (> homestead edit) - note the Homestead ip, and your chosen domain name. You may add a database too.
 
