@@ -12,16 +12,16 @@ http://laravel.com/docs/5.0/homestead#installation-and-setup
 http://laravel.com/docs/5.0/installation#install-laravel
 
 ## Steps
-- ssh into Homestead
+ssh into Homestead
 > sudo composer self-update
 > composer global update
 
-- cd to code/projects folder when in Homestead via ssh, e.g. cd ~/Code
+cd to your code/projects folder when in Homestead via ssh, e.g. `cd ~/Code`
 > laravel new PROJECTNAME
 
-- Exit Homestead ssh session
+Exit Homestead ssh session
 
-Add the new site to your ~/.homestead/Homestead.yaml (> homestead edit) - note the Homestead ip, and your chosen domain name. You may add a database too.
+Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) - note the Homestead ip, and your chosen domain name. You may add a database too.
 
 Add the Homestead ip and the chosen domain to your /etc/hosts
 
