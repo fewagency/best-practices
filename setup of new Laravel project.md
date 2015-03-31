@@ -12,7 +12,8 @@ http://laravel.com/docs/5.0/homestead#installation-and-setup
 http://laravel.com/docs/5.0/installation#install-laravel
 
 ## Steps
-ssh into Homestead
+
+### ssh into Homestead from your local machine
 > sudo composer self-update
 > composer global update
 
@@ -21,25 +22,29 @@ cd to your code/projects folder when in Homestead via ssh, e.g. `cd ~/Code`
 
 Exit Homestead ssh session
 
+### On your local machine
 Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) - note the Homestead ip, and your chosen domain name. You may add a database too.
 
 Add the Homestead ip and the chosen domain to your /etc/hosts
 
-Create a new project in PhpStorm, select Location & set Project type to PHP Empty Project, then OK and click Yes to create a project from existing sources instead (Don’t configure namespace roots at this point).
+### In PhpStorm
+Create a new project, select Location & set Project type to PHP Empty Project, then OK and click Yes to create a project from existing sources instead (Don’t configure namespace roots at this point).
 
 Create git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
 
 Edit .gitignore to add:
+```
 .env.behat
 _ide_helper.php
 .idea
+```
 
-Add and commit all files to git
+Add and commit all other files to git
 
 ### In PhpStorm preferences:
 - Tools > Vagrant - Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
 
-Load the new Homestead configuration through PhpStorm via Tools > Vagrant > Provision
+Exit preferences and load the new Homestead configuration via Tools > Vagrant > Provision
 
 ### In PhpStorm preferences:
 - Languages & Frameworks > PHP - Set the Interpreter to Homestead (which should be a Vagrant Remote) and leave include paths (everything under vendor will be auto-added by PhpStorm after the next composer update)
@@ -49,12 +54,14 @@ Load the new Homestead configuration through PhpStorm via Tools > Vagrant > Prov
 - Project > Directories - Make vendor an Excluded folder
 - Other Settings > Laravel Plugin - Enable plugin
 
-Create a PhpStorm Run configuration via Run > Edit configurations of type PHPUnit called "Run PHPUnit" with Test scope Defined in the configuration file.
+Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type PHPUnit called "Run PHPUnit" with Test scope Defined in the configuration file.
 
-ssh into Homestead, cd to the project folder
+### ssh into Homestead
+cd to the project folder
 > chmod u+x artisan
 > composer require barryvdh/laravel-ide-helper --dev
 
+### In PhpStorm
 Edit project’s composer.json to add this in section scripts > post-update-cmd - just before artisan optimize:
 ```json
 "php artisan ide-helper:generate",
@@ -67,12 +74,14 @@ if (!$this->app->environment('production')) {
 }
 ```
 
-ssh into Homestead, cd to the project folder
+### ssh into Homestead
+cd to the project folder
 > composer update
 
 Commit "ide-helper setup"
 
-ssh into Homestead, cd to the project folder
+### ssh into Homestead
+cd to the project folder
 > composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
 > vendor/bin/behat --init
 > cp .env.example .env.behat
@@ -126,13 +135,15 @@ Artisan::call('migrate');
 
 Commit "PHPUnit setup"
 
-Optional: Remove Laravel scaffolding - ssh into Homestead, cd to the project folder
+### Optional: Remove Laravel scaffolding
+ssh into Homestead, cd to the project folder
 (Caution - This call removes edits from AppServiceProvider::register() that will need to be re-added before committing!)
 > php artisan fresh
 
 …and commit "Removed Laravel scaffolding"
 
-Optional: Namespace application - ssh into Homestead, cd to the project folder
+### Optional: Namespace application
+ssh into Homestead, cd to the project folder
 > php artisan app:name APPNAME
 
 …and commit "App namespacing"
