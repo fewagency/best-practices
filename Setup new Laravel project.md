@@ -11,7 +11,7 @@ http://laravel.com/docs/5.0/installation#install-laravel
 
 ## Steps
 
-### ssh into Homestead from your local machine
+### ssh into Homestead
 > sudo composer self-update
 
 > composer global update
