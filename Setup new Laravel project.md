@@ -133,7 +133,7 @@ Commit "PHPUnit setup"
 
 ### Optional: Remove Laravel scaffolding
 ssh into Homestead, cd to the project folder
-(Caution - This call removes edits from *AppServiceProvider::register()* that will need to be re-added before committing! - do a diff)
+(**Caution** - This call removes edits from *AppServiceProvider::register()* that will need to be re-added before committing, so do a diff!)
 > php artisan fresh
 
 …and commit "Removed Laravel scaffolding"
