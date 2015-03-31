@@ -27,9 +27,10 @@ Then add the Homestead ip along with the chosen domain to your **/etc/hosts** fi
 ### In PhpStorm
 Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
 
-Create the git repository in PhpStorm via **VCS** > **Import into Version Control** > **Create Git Repository**
+Create the git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
 
 Edit **.gitignore** to add:
+
 ```
 .env.behat
 _ide_helper.php
@@ -47,11 +48,11 @@ Exit preferences and load the new Homestead configuration via Tools > Vagrant > 
 * Languages & Frameworks > PHP - Set the *Interpreter* to "Homestead" (which should be a Vagrant Remote) and leave include paths (everything under vendor will be auto-added by PhpStorm after the next composer update)
 * Languages & Frameworks > PHP > Servers - Add new with chosen domain, then set path mappings on the main project directory and the public directory, e.g. /home/vagrant/Code/?
 * Languages & Frameworks > PHP > PHPUnit - *Add Remote Interpreter*, *Use custom autoloader* path ?/vendor/autoload.php and *Default configuration file* path ?/phpunit.xml in the project directory on the Homestead machine
-* Build, Execution, Deployment > Deployment - Edit or add "Homestead", Type *SFTP*, set SFTP Host and Web server root URL, then switch to the *Mapping* tab and set *Deployment path on server*
-* Project > Directories - Make *vendor* an *Excluded folder*
+* Build, Execution, Deployment > Deployment - Edit or add "Homestead", Type *SFTP*, set *SFTP Host* and *Web server root URL*, then switch to the *Mapping* tab and set *Deployment path on server*
+* Project > Directories - Make **vendor** an *Excluded folder*
 * Other Settings > Laravel Plugin - Enable plugin
 
-Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type PHPUnit called "Run PHPUnit" with *Test scope* *Defined in the configuration file*.
+Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type *PHPUnit* called "Run PHPUnit" with *Test scope* *Defined in the configuration file*.
 
 ### ssh into Homestead, cd to the project folder
 > chmod u+x artisan
@@ -59,12 +60,14 @@ Exit preferences and create a PhpStorm Run configuration via Run > Edit configur
 > composer require barryvdh/laravel-ide-helper --dev
 
 ### In PhpStorm
-Edit project’s composer.json to add this in section scripts > post-update-cmd - just before `artisan optimize`:
+Edit **composer.json** to add this in section scripts > post-update-cmd - just before `artisan optimize`:
+
 ```json
 "php artisan ide-helper:generate",
 ```
 
-Edit app/Providers/AppServiceProvider.php and add this within the *register()* method:
+Edit **app/Providers/AppServiceProvider.php** and add this within the *register()* method:
+
 ```php
 if (!$this->app->environment('production')) {
   $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
@@ -84,6 +87,7 @@ Commit "ide-helper setup"
 > cp .env.example .env.behat
 
 Create **behat.yml** in project root and enter:
+
 ```yml
 default:
   extensions:
@@ -94,6 +98,7 @@ default:
 ```
 
 Edit **.env.behat** to set:
+
 ```
 APP_ENV=acceptance
 APP_DEBUG=false
@@ -141,7 +146,7 @@ Commit "PHPUnit setup"
 
 ### Optional: Remove Laravel scaffolding
 ssh into Homestead, cd to the project folder
-(Caution - This call removes edits from AppServiceProvider::register() that will need to be re-added before committing!)
+(Caution - This call removes edits from *AppServiceProvider::register()* that will need to be re-added before committing! - do a diff)
 > php artisan fresh
 
 …and commit "Removed Laravel scaffolding"
