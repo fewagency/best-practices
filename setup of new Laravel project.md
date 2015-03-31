@@ -1,7 +1,7 @@
-HOW TO SET UP A NEW LARAVEL PROJECT
-with PhpStorm, Homestead, Git, xDebug (disabled if Blackfire is configured), PHPUnit, Behat
+# HOW TO SET UP A NEW LARAVEL PROJECT
+With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if Blackfire is configured), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
-Prerequisites:
+## Prerequisites
 Composer needed on your local machine for recommended Homestead install
 https://getcomposer.org/doc/00-intro.md#globally
 
