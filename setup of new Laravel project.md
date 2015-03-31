@@ -2,11 +2,11 @@
 With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
 ## Prerequisites
-- Composer needed on your local machine for recommended Homestead install
+- **Composer** needed on your local machine for recommended Homestead install
 https://getcomposer.org/doc/00-intro.md#globally
-- Homestead on your local machine - recommended method: _With Composer + PHP Tool_
+- **Homestead** on your local machine - recommended method: *With Composer + PHP Tool*
 http://laravel.com/docs/5.0/homestead#installation-and-setup
-- Laravel installer on the Homestead machine
+- **Laravel installer** on the Homestead machine
 http://laravel.com/docs/5.0/installation#install-laravel
 
 ## Steps
@@ -16,19 +16,18 @@ http://laravel.com/docs/5.0/installation#install-laravel
 
 > composer global update
 
-cd to your code/projects folder when in Homestead via ssh, e.g. `cd ~/Code`
+cd to your code/projects folder, e.g. `cd ~/Code`
 > laravel new PROJECTNAME
 
-Exit Homestead ssh session
-
 ### On your local machine
-- Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database too.
-- Add the Homestead ip and the chosen domain to your /etc/hosts
+Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
+
+Then add the Homestead ip along with the chosen domain to your /etc/hosts
 
 ### In PhpStorm
-Create a new project, select Location & set Project type to PHP Empty Project, then OK and click Yes to create a project from existing sources instead (Don’t configure namespace roots at this point).
+Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
 
-Create git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
+Create the git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
 
 Edit .gitignore to add:
 ```
@@ -37,57 +36,54 @@ _ide_helper.php
 .idea
 ```
 
-Add and commit all other files to git
+Add and commit all files to git
 
 ### In PhpStorm preferences:
-- Tools > Vagrant - Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
+* Tools > Vagrant - Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
 
 Exit preferences and load the new Homestead configuration via Tools > Vagrant > Provision
 
 ### In PhpStorm preferences:
-- Languages & Frameworks > PHP - Set the Interpreter to Homestead (which should be a Vagrant Remote) and leave include paths (everything under vendor will be auto-added by PhpStorm after the next composer update)
-- Languages & Frameworks > PHP > Servers - Add new with chosen domain, then set path mappings on the main project directory and the public directory, e.g. /home/vagrant/Code/?
-- Languages & Frameworks > PHP > PHPUnit - Add Remote Interpreter, Use custom autoloader path ?/vendor/autoload.php and Default configuration file path ?/phpunit.xml in the project directory on the Homestead machine
-- Build, Execution, Deployment > Deployment - Edit or add "Homestead", Type SFTP, set SFTP Host and Web server root URL, then switch to Mapping tab and set Deployment path on server
-- Project > Directories - Make vendor an Excluded folder
-- Other Settings > Laravel Plugin - Enable plugin
+* Languages & Frameworks > PHP - Set the *Interpreter* to "Homestead" (which should be a Vagrant Remote) and leave include paths (everything under vendor will be auto-added by PhpStorm after the next composer update)
+* Languages & Frameworks > PHP > Servers - Add new with chosen domain, then set path mappings on the main project directory and the public directory, e.g. /home/vagrant/Code/?
+* Languages & Frameworks > PHP > PHPUnit - *Add Remote Interpreter*, *Use custom autoloader* path ?/vendor/autoload.php and *Default configuration file* path ?/phpunit.xml in the project directory on the Homestead machine
+* Build, Execution, Deployment > Deployment - Edit or add "Homestead", Type *SFTP*, set SFTP Host and Web server root URL, then switch to the *Mapping* tab and set *Deployment path on server*
+* Project > Directories - Make *vendor* an *Excluded folder*
+* Other Settings > Laravel Plugin - Enable plugin
 
-Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type PHPUnit called "Run PHPUnit" with Test scope Defined in the configuration file.
+Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type PHPUnit called "Run PHPUnit" with *Test scope* *Defined in the configuration file*.
 
-### ssh into Homestead
-cd to the project folder
+### ssh into Homestead, cd to the project folder
 > chmod u+x artisan
 
 > composer require barryvdh/laravel-ide-helper --dev
 
 ### In PhpStorm
-Edit project’s composer.json to add this in section scripts > post-update-cmd - just before artisan optimize:
+Edit project’s composer.json to add this in section scripts > post-update-cmd - just before `artisan optimize`:
 ```json
 "php artisan ide-helper:generate",
 ```
 
-Edit app/Providers/AppServiceProvider.php and add this within the register() method:
+Edit app/Providers/AppServiceProvider.php and add this within the *register()* method:
 ```php
 if (!$this->app->environment('production')) {
   $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
 }
 ```
 
-### ssh into Homestead
-cd to the project folder
+### ssh into Homestead, cd to the project folder
 > composer update
 
 Commit "ide-helper setup"
 
-### ssh into Homestead
-cd to the project folder
+### ssh into Homestead, cd to the project folder
 > composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
 
 > vendor/bin/behat --init
 
 > cp .env.example .env.behat
 
-Create behat.yml in project root and enter:
+Create **behat.yml** in project root and enter:
 ```yml
 default:
   extensions:
@@ -97,7 +93,7 @@ default:
       laravel: ~
 ```
 
-Edit .env.behat to set:
+Edit **.env.behat** to set:
 ```
 APP_ENV=acceptance
 APP_DEBUG=false
@@ -105,7 +101,8 @@ CACHE_DRIVER=array
 SESSION_DRIVER=array
 ```
 
-Edit features/bootstrap/FeatureContext.php and add this at top of file:
+Edit **features/bootstrap/FeatureContext.php** and add this at top of file:
+
 ```php
 use Behat\MinkExtension\Context\MinkContext;
 use Laracasts\Behat\Context\DatabaseTransactions;
@@ -113,10 +110,13 @@ use Laracasts\Behat\Context\Migrator;
 use Laracasts\Behat\Context\Services\MailTrap;
 use PHPUnit_Framework_Assert as PHPUnit;
 ```
+
 …and add this to the class:
+
 ```php
 extends MinkContext
 ```
+
 ```php
 use DatabaseTransactions, Migrator;
 use MailTrap;
@@ -124,12 +124,15 @@ use MailTrap;
 
 Commit "Behat setup"
 
-Edit tests/TestCase.php and put this before return statement in createApplication():
+Edit **tests/TestCase.php** and put this before return statement in *createApplication()*:
+
 ```php
 $app['config']->set('database.default', 'sqlite');
 $app['config']->set('database.connections.sqlite.database', ':memory:');
 ```
-…then override method setUp() and add this after parent::setUp() has been run:
+
+…then override method *setUp()* and add this after `parent::setUp()` within:
+
 ```php
 Artisan::call('migrate');
 ```
