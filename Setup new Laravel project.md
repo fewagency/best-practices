@@ -11,20 +11,26 @@ http://laravel.com/docs/5.0/installation#install-laravel
 
 ## Steps
 
-### ssh into Homestead
+### Install a fresh Laravel copy
+
+ssh into Homestead
 > sudo composer self-update
 
 > composer global update
 
-cd to your code/projects folder, e.g. `cd ~/Code`
+cd to your code/projects directory, e.g. `cd ~/Code`
 > laravel new PROJECTNAME
 
-### On your local machine
+#### Make artisan executable (optional)
+cd into the new project directory
+> chmod u+x artisan
+
+#### On your local machine
 Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
 
 Then add the Homestead ip along with the chosen domain to your **/etc/hosts** file
 
-### In PhpStorm
+### Setup in PhpStorm
 Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
 
 Create the git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
@@ -41,12 +47,10 @@ Add and commit all files to git
 
 Follow [Configure PhpStorm for a Laravel project](Configure PhpStorm for Laravel project.md)
 
-### ssh into Homestead, cd to the project folder
-> chmod u+x artisan
-
+### Configure ide-helper
+ssh into Homestead, cd to the project directory
 > composer require barryvdh/laravel-ide-helper --dev
 
-### In PhpStorm
 Edit **composer.json** to add this in section scripts > post-update-cmd - just before `artisan optimize`:
 
 ```json
@@ -61,12 +65,13 @@ if (!$this->app->environment('production')) {
 }
 ```
 
-### ssh into Homestead, cd to the project folder
+ssh into Homestead, cd to the project directory
 > composer update
 
 Commit "ide-helper setup"
 
-### ssh into Homestead, cd to the project folder
+### Setup Behat
+ssh into Homestead, cd to the project directory
 > composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
 
 > vendor/bin/behat --init
@@ -116,6 +121,7 @@ use MailTrap;
 
 Commit "Behat setup"
 
+### Setup PHPUnit
 Edit **tests/TestCase.php** and put this before return statement in *createApplication()*:
 
 ```php
@@ -132,14 +138,14 @@ Artisan::call('migrate');
 Commit "PHPUnit setup"
 
 ### Optional: Remove Laravel scaffolding
-ssh into Homestead, cd to the project folder
+ssh into Homestead, cd to the project directory
 (**Caution** - This call removes edits from *AppServiceProvider::register()* that will need to be re-added before committing, so do a diff!)
 > php artisan fresh
 
 …and commit "Removed Laravel scaffolding"
 
 ### Optional: Namespace application
-ssh into Homestead, cd to the project folder
+ssh into Homestead, cd to the project directory
 > php artisan app:name APPNAME
 
 …and commit "App namespacing"
