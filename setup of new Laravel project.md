@@ -82,9 +82,11 @@ Commit "ide-helper setup"
 
 ### ssh into Homestead
 cd to the project folder
-> composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
-> vendor/bin/behat --init
-> cp .env.example .env.behat
+```bash
+composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
+vendor/bin/behat --init
+cp .env.example .env.behat
+```
 
 Create behat.yml in project root and enter:
 ```yml
