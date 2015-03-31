@@ -22,14 +22,14 @@ cd to your code/projects folder, e.g. `cd ~/Code`
 ### On your local machine
 Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
 
-Then add the Homestead ip along with the chosen domain to your /etc/hosts
+Then add the Homestead ip along with the chosen domain to your **/etc/hosts** file
 
 ### In PhpStorm
 Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
 
-Create the git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
+Create the git repository in PhpStorm via **VCS** > **Import into Version Control** > **Create Git Repository**
 
-Edit .gitignore to add:
+Edit **.gitignore** to add:
 ```
 .env.behat
 _ide_helper.php
