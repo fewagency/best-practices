@@ -11,6 +11,6 @@ In PhpStorm preferences:
 * Languages & Frameworks > PHP > PHPUnit - *Add Remote Interpreter*, *Use custom autoloader* path ?/vendor/autoload.php and *Default configuration file* path ?/phpunit.xml in the project directory on the Homestead machine
 * (Optional) Build, Execution, Deployment > Deployment - Edit or add "Homestead", Type *SFTP*, set *SFTP Host* and *Web server root URL*, then switch to the *Mapping* tab and set *Deployment path on server*. (Unconfirmed: this may help with some path mappings in other PhpStorm tools)
 * (Optional) Project > Directories - Make **vendor** an *Excluded folder*
-* Other Settings > Laravel Plugin - Enable plugin (If not already installed, go to Plugins and search for "Laravel" and install it and restart PhpStorm first)
+* Other Settings > Laravel Plugin - Enable plugin (If not already installed, go to Plugins and search for "Laravel", install the plugin and restart PhpStorm, then go back to settings and enable it)
 
-Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type *PHPUnit* called "Run PHPUnit" with *Test scope* *Defined in the configuration file*.
+Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type *PHPUnit* called "Run PHPUnit" with *Test scope* set to *Defined in the configuration file*. Leave all other options blank.
