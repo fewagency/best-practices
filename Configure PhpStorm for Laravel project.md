@@ -3,7 +3,9 @@
 In PhpStorm preferences:
 * Tools > Vagrant - Set instance folder, e.g. /Users/?/.composer/vendor/laravel/homestead
 
-Exit preferences and load the new Homestead configuration via Tools > Vagrant > Provision
+Exit preferences
+
+Load the new Homestead configuration via Tools > Vagrant > Provision
 
 In PhpStorm preferences:
 * Languages & Frameworks > PHP - Set the *Interpreter* to your Homestead interpreter. If not in list, create new *Remote* interpreter of type *Vagrant* with the instance folder path from step above. Leave include paths empty (everything under vendor will be auto-added by PhpStorm after the next composer update).
@@ -13,4 +15,6 @@ In PhpStorm preferences:
 * (Optional) Project > Directories - Make **vendor** an *Excluded folder*
 * Other Settings > Laravel Plugin - Enable plugin (If not already installed, go to Plugins and search for "Laravel", install the plugin and restart PhpStorm, then go back to settings and enable it)
 
-Exit preferences and create a PhpStorm Run configuration via Run > Edit configurations of type *PHPUnit* called "Run PHPUnit" with *Test scope* set to *Defined in the configuration file*. Leave all other options blank.
+Exit preferences
+
+For PHPUnit, create a PhpStorm Run configuration via Run > Edit configurations of type *PHPUnit* called "Run PHPUnit" with *Test scope* set to *Defined in the configuration file*. Leave all other options blank.
