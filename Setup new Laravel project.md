@@ -5,9 +5,9 @@ With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github
 - **Composer** needed on your local machine for recommended Homestead install
 https://getcomposer.org/doc/00-intro.md#globally
 - **Homestead** on your local machine - recommended method: *With Composer + PHP Tool*
-http://laravel.com/docs/5.0/homestead#installation-and-setup
+http://laravel.com/docs/5.1/homestead#installation-and-setup
 - **Laravel installer** on the Homestead machine
-http://laravel.com/docs/5.0/installation#install-laravel
+http://laravel.com/docs/5.1/installation#install-laravel
 
 ## Steps
 
