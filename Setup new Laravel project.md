@@ -137,14 +137,13 @@ Artisan::call('migrate');
 
 Commit "PHPUnit setup"
 
-~~
+
 ### Optional: Remove Laravel scaffolding
-ssh into Homestead, cd to the project directory
+~~ssh into Homestead, cd to the project directory
 (**Caution** - This call removes edits from *AppServiceProvider::register()* that will need to be re-added before committing, so do a diff!)
 > php artisan fresh
 
-…and commit "Removed Laravel scaffolding"
-~~
+…and commit "Removed Laravel scaffolding"~~
 
 ### Optional: Namespace application
 ssh into Homestead, cd to the project directory
