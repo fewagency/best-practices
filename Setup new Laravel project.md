@@ -1,5 +1,7 @@
-# Recipe for setup of a new [Laravel](http://laravel.com) project
+# Setup of a new [Laravel](http://laravel.com) project
 With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
+
+If you're setting up an existing Laravel project for development or deploy, please refer to the project's readme instead of this guide.
 
 ## Prerequisites
 - **Composer** needed on your local machine for recommended Homestead install
@@ -33,7 +35,7 @@ Then add the Homestead ip along with the chosen domain to your **/etc/hosts** fi
 ### Setup in PhpStorm
 Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
 
-Create the git repository in PhpStorm via VCS > Import into Version Control > Create Git Repository
+Create the git repository in PhpStorm via __VCS__ > __Import into Version Control__ > __Create Git Repository__
 
 Edit **.gitignore** to add:
 
