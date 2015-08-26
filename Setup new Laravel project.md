@@ -139,7 +139,7 @@ Artisan::call('migrate');
 
 Commit "PHPUnit setup"
 
-### Optional: Namespace application
+### Optional: Namespace the application
 ssh into Homestead, cd to the project directory
 > php artisan app:name APPNAME
 
