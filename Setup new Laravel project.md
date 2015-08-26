@@ -1,7 +1,7 @@
 # Setup of a new [Laravel](http://laravel.com) project
 With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github.com/laravel/homestead), [Git](http://git-scm.com), [xDebug](http://xdebug.org) (disabled if [Blackfire](https://blackfire.io) is configured in Homestead), [PHPUnit](https://phpunit.de), [Behat](http://behat.org/)
 
-**Note:** If you're setting up an existing Laravel project for development or deploy, please refer to the project's readme instead of this guide.
+**Note:** If you're setting up an existing Laravel project source for development or deploy, please refer to that project's readme instead of this guide.
 
 ## Prerequisites
 - **Composer** needed on your local machine for recommended Homestead install
