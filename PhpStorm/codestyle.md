@@ -4,4 +4,4 @@ The `codestyles` directory contains xml-files that can be put in your PhpStorm c
 Codestyles can then be selected in PhpStorm settings.
 
 ## FEW code style
-(PhpStorm/codestyles/FEW.xml)
+[PhpStorm/codestyles/FEW.xml]
