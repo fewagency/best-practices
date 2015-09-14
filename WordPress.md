@@ -5,6 +5,7 @@ We build almost all our Wordpress themes on [Sage](https://roots.io/sage/).
 
 * [Admin Menu Editor](https://wordpress.org/plugins/admin-menu-editor/)
 * [WordPress SEO by Yoast](https://wordpress.org/plugins/wordpress-seo/)
+* [Google Analytics by Yoast](https://yoast.com/wordpress/plugins/google-analytics/)
 * [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/)
 * [Advanced Custom Fields](http://www.advancedcustomfields.com) - we have a key for PRO.
 
