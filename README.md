@@ -8,6 +8,6 @@ A FEW ideas that make our lives easier
 * [Setup a new Laravel project](Setup new Laravel project.md)
 * [Configure PhpStorm for Laravel](PhpStorm/Configure PhpStorm for Laravel project.md)
 
-## [Wordpress]
+## Wordpress
 * [Basic stuff](Wordpress/index.md)
 * [Move multisite](Wordpress/move-multisite.md)
