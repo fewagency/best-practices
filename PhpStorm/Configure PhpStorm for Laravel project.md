@@ -22,3 +22,8 @@ Exit preferences
 For PHPUnit, create a PhpStorm Run configuration via __Run__ > __Edit configurations__ of type *PHPUnit* called "Run PHPUnit" with *Test scope* set to *Defined in the configuration file*. Leave all other options blank.
 
 To use a common code style, make sure your project's [style XML is installed and selected](codestyle.md).
+
+If PhpStorm doesn't pull in the vendor directory in include paths, you may need to initialize Composer.
+Unfortunately this can't use the Composer of Homestead, it needs to be a local Composer which can't actually be used later for updates etc depending on the Composer post/pre-commands not supported by the local machine.
+Start at __Tools__ > __Composer__ > __Init Composer...__ to select a local Composer anyway.
+Afterwards PhpStorm will load vendor contents into the include path.
