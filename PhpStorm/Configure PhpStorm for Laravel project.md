@@ -7,6 +7,7 @@ In PhpStorm preferences:
 Exit preferences
 
 Load the new Homestead configuration via __Tools__ > __Vagrant__ > __Provision__
+(caution: provisioning clears the databases in your Homestead box)
 
 In PhpStorm preferences:
 
