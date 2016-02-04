@@ -5,7 +5,7 @@ https://roots.io/bedrock/docs/installing-bedrock/
 .
 
 ##Getting up and running with Bedrock
-While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Since we are often using [Oderland](http://oderland.se) as host, this guide also describes some extra steps necessary to get stuff up and running in their environment. The Oderland-steps may of course also apply to other shared webhosts.
+While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
 
 Let's get started!
 
