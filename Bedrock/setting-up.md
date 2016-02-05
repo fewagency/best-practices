@@ -112,8 +112,7 @@ However, there are some plugins such as Advanced Custom Fields Pro, that are not
 
 Below are some lines that will install some nice plugins. Add all of them or just some to require[] in your Composer file.
 
-```
-javascript
+```javascript
 "elliot-condon/advanced-custom-fields-pro":"5.3.3.2",
 "wpackagist-plugin/w3-total-cache": "dev-trunk",
 "wpackagist-plugin/wordpress-seo": "dev-trunk",
@@ -123,7 +122,7 @@ javascript
 
 For ACF to work, you must add the following snippet to repositories[] in your Composer file.
 
-```
+```javascript
 {
   "type": "package",
   "package": {
@@ -145,7 +144,7 @@ For W3TC to work, we need to do some extra stuff:
 
 1. As said here: https://github.com/roots/bedrock/issues/38#issuecomment-170091932, add the below lines to ":linked_files" in deploy.rb.
 
-```
+```ruby
 'web/app/advanced-cache.php',
 'web/app/db.php',
 'web/app/object-cache.php'
@@ -153,7 +152,7 @@ For W3TC to work, we need to do some extra stuff:
 
 2. Then add these lines to ":linked_dirs"
 
-```
+```ruby
 'web/app/uploads',
 'web/app/cache',
 'web/app/w3tc-config'
