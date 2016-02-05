@@ -14,7 +14,7 @@ This guide assumes in some places that you are developing a theme based on [Sage
 These steps should be taken if yo are the first developer to work on a project. If you are supposed to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
 
 1. Make sure you have a MySQL-database to use for the WP-installation.
-2. The entire project will be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally after step 1 or however you like to do it. The important thing is that the entire project is in the repo. So if you unzip Bedrock (see next step) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo).
+2. The entire project will be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally after step 1 or however you like to do it. The important thing is that the entire project is in the repo. So if you unzip Bedrock (see next step) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo). Set the repo as public for now and we will guide you on how to use private repos later on in this document.
 3. Install [Composer](https://getcomposer.org/) if you don't already have it installed.
 4. Follow the steps listed here: https://roots.io/bedrock/docs/installing-bedrock/ with the following exceptions:
     - Instead of cloning the git repo, download it as a zip, unzip it and move the ocntent of bedrock-matser to the local projects web root. We don't want the git files for Bedrock in our repo.
@@ -30,10 +30,10 @@ Note that since Sage comes with its own .gitignore, we now have two such files i
 
 ```
 # Theme
- web/app/themes/THEME_DIR_NAME/dist
- web/app/themes/THEME_DIR_NAME/bower_components
- web/app/themes/THEME_DIR_NAME/node_modules
- web/app/themes/THEME_DIR_NAME/npm-debug.log
+web/app/themes/THEME_DIR_NAME/dist
+web/app/themes/THEME_DIR_NAME/bower_components
+web/app/themes/THEME_DIR_NAME/node_modules
+web/app/themes/THEME_DIR_NAME/npm-debug.log
 ```
 
 If you haven't already made a git commit, now may be a good time to do one.
@@ -105,8 +105,77 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 19. Do a css-change on your local machine, for example setting the body-bg to red in assets/style/main.scss
 10. Execute `bundle exec cap production deploy`, wait for it to finish and reload the site on the remote server in your browser. The changes in the css should now be visible. Note that you didn't have to git commit anything when you only change assets since they are uploaded from your local machine.
 
-TODO: How to add plug-ins
+###Add plugins
+Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .
+
+However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, follow the steps outlined here to create a custom Composer package. We have created http://composerpackages.few.agency that we can use internally to store such packages. Example code for ACF Pro can be found further down in this document.
+
+Below are some lines that will install some nice plugins. Add all of them or just some to require[] in your Composer file.
+
+```
+javascript
+"elliot-condon/advanced-custom-fields-pro":"5.3.3.2",
+"wpackagist-plugin/w3-total-cache": "dev-trunk",
+"wpackagist-plugin/wordpress-seo": "dev-trunk",
+"wpackagist-plugin/google-analytics-for-wordpress": "dev-trunk",
+"wpackagist-plugin/admin-menu-editor": "dev-trunk"
+```
+
+For ACF to work, you must add the following snippet to repositories[] in your Composer file.
+
+```
+{
+  "type": "package",
+  "package": {
+    "name": "elliot-condon/advanced-custom-fields-pro",
+    "version": "5.3.3.2",
+    "type": "wordpress-plugin",
+    "dist": {
+      "type": "zip",
+      "url": "http://SET_TO_POINT_TO_ACF_AT_OUR_COMPOSER_PACKAGES_SERVER"
+    },
+    "require" : {
+      "fancyguy/webroot-installer": "1.1.0"
+    }
+  }
+}
+```
+
+For W3TC to work, we need to do some extra stuff:
+
+1. As said here: https://github.com/roots/bedrock/issues/38#issuecomment-170091932, add the below lines to ":linked_files" in deploy.rb.
+
+```
+'web/app/advanced-cache.php',
+'web/app/db.php',
+'web/app/object-cache.php'
+```
+
+2. Then add these lines to ":linked_dirs"
+
+```
+'web/app/uploads',
+'web/app/cache',
+'web/app/w3tc-config'
+```
+
+3. Run `composer update`on your local machine to instal W3TC
+4. Activate W3C locally if you want to.
+5. If you do activate W3TC locally, make sure that the local versions of the files and directories above are ignored in the git repo.
+6. Create the files and folders that should be symlinked to in shares/web/app on the remote servers. These files and folders can just be empty files, W3TC will write to them later on.
+7. Push composer-files to the git repo
+8. Deploy using Capistrano.
+9. Activate W3TC on remote server
+10. Activate page cache
+11. Visit the site without being logged in.
+12. Check shared/web/app/cache/page_enhanced/ and make sure that there are some files and folders there that represent the pages you just visited.
+
+###Access private repos
+Often, the main repo will be a private repo...
+
 TODO: How to access private repos from Oderland
+
+TODO: How to handle automatic updates
 
  
 
