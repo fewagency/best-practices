@@ -1,14 +1,28 @@
 # deploy.rb from https://github.com/roots/bedrock-capistrano modified by FEW Agency, developers@fewagency.se
 
-set :application, 'bedrocktest'
-# FEW-comment: use teh SSH-url below
+# FEW-comment: from Capistrano doc:
+# Here we'd set the name of the application, ideally in a way that's safe for
+# filenames on your target operating system.
+set :application, 'APPLICATIONNAME'
+
+# FEW-comment: use the SSH url for the repo from GitHub
 set :repo_url, 'git@github.com:USER/REPO.GIT'
+
 # FEW-addition: name of the dir where theme is placed. Not the entire path.
-set :theme_directory_name, 'sage-master'
+set :theme_directory_name, 'THEME_DIR_NAME'
 
 # FEW-addition. Use in case composer command does not work. Set value to point to where you put composer.phar on remote
 # https://discourse.roots.io/t/deploying-wordpress-with-capistrano-screencast/863/25
 SSHKit.config.command_map[:composer] = "~/bin/composer.phar"
+
+# FEW-comment: this should be set to the target directory of the deploy on the server.
+# So if your site is placed in /home/few/sites/bedrock-test.com/, that is the path to use.
+# Make sure the path starts at the root directory and ends with a /
+set :deploy_to, -> { "/PATH" }
+
+# FEW-addition. We must change tmp dir since Oderland does not allow us to execute files placed in /tmp/
+# Set it to a nice place, preferrably outside any public folders. Should not end with a /
+set :tmp_dir, "/PATH"
 
 # Branch options
 # Prompts for the branch name (defaults to current branch)
@@ -18,16 +32,13 @@ SSHKit.config.command_map[:composer] = "~/bin/composer.phar"
 # This could be overridden in a stage config file
 set :branch, :master
 
-# FEW-comment: this should be set to the target directory of the deploy on the server.
-# Make sure the path starts at the home directory (which you can find by running cd ~ )
-set :deploy_to, -> { "PATH" }
-
-# FEW-addition. We must change tmp dir since Oderland does not allow us to execute files placed in /tmp/
-# Set it to a nice place. Could even be a tmp folder in the paths et in :deploy_to
-set :tmp_dir, "PATH"
+# FEW addition. Disable forward agent for, what appears to be, increased security
+set :ssh_options, {
+  :forward_agent => false
+}
 
 # Use :debug for more verbose output when troubleshooting
-set :log_level, :info
+set :log_level, :debug
 
 # Apache users with .htaccess files:
 # it needs to be added to linked_files so it persists across deploys:
