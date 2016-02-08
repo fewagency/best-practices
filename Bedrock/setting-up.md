@@ -2,7 +2,7 @@
 This is guide aims to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
 
 If you get totally stuck, here are some resources that may help you:
-[Roots Discourse](https://discourse.roots.io)
+[Roots Discourse](https://discourse.roots.io). Actually, you may want to head over and read this through really quick. It's nowhere near as long as this and may be good to have in the back of the mind when reading the rest of this document.
 [Capistrano Website with manual](http://capistranorb.com/)
 [Screencast on deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/). This video also exist in our shared Dropbox folder. Note that it is getting a bit old and may contain outdated information.
 
@@ -11,11 +11,11 @@ Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is
 https://roots.io/bedrock.
 
 ##OMG, look at the length of this document!
-Fear not. While the guide is pretty lengthy (partly due to usesless paragraphs like this), you will probably onlye have to go through it once per project and then forget about it.
+Fear not. While the guide is pretty lengthy (partly due to usesless paragraphs like this but also because it contains information on how to add plugins and set up SSH), you will probably only have to go through it once per project and then forget about it.
 
 While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Alos, since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
 
-This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not doing that: why are you not doing that? If you still don't want to use Sage, you should probably be able to use this guide anyway and skip the Sage specific parts.
+This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not using Sage: why are you not using Sage? If you still don't want to use Sage, you should probably be able to use this guide anyway and skip the Sage specific parts. Sage!
 
 ##Setting up Bedrock locally from scratch
 These steps should be taken if yo are the first developer to work on a project. If you are supposed to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
@@ -126,7 +126,9 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 ##Add plugins
 Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .
 
-However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, follow the steps outlined here to create a custom Composer package. We have created http://composerpackages.few.agency that we can use internally to store such packages. Example code for ACF Pro can be found further down in this document.
+However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, read how to work around that under ["Setting up your own private repository" here](http://codelight.eu/using-private-wordpress-repositories-with-composer/). *Important*: when creting the zip, use the following command `zip TARGET.zip -x \*.DS_Store -r DIR_TO_ZIP/` to avoid messing up the directory structure. We have created a subdomain for few.agency that we can use internally to store such packages. Example code for ACF Pro can be found further down in this document.
+
+###Custom Composer packages 
 
 Below are some lines that will install some nice plugins. Add all of them or just some to require[] in composer.json in the root of your project.
 
@@ -139,18 +141,18 @@ Below are some lines that will install some nice plugins. Add all of them or jus
 ```
 If you included ACF and/or W3TC, read on. Otherwise, you can run `composer update` now.
 
-For ACF to work, you must add the following snippet to repositories[] in your Composer file.
+For ACF to work, you must add the following snippet to repositories[] in your Composer file. Make sure to update version and dist.url if needed.
 
 ```javascript
 {
   "type": "package",
   "package": {
     "name": "elliot-condon/advanced-custom-fields-pro",
-    "version": "5.3.3.2",
+    "version": "5.3.4",
     "type": "wordpress-plugin",
     "dist": {
       "type": "zip",
-      "url": "http://SET_TO_POINT_TO_ACF_AT_OUR_COMPOSER_PACKAGES_SERVER"
+      "url": "http://SET_TO_POINT_TO_ACF_ZIP_AT_OUR_COMPOSER_PACKAGES_SERVER"
     },
     "require" : {
       "fancyguy/webroot-installer": "1.1.0"
@@ -192,6 +194,8 @@ For W3TC to work, we need to do some extra stuff:
 10. Enable page cache
 11. Visit the site without being logged in.
 12. Check shared/web/app/cache/page_enhanced/ and make sure that there are some files and folders there that represent the pages you just visited.
+
+@Todo: Make sure that we can write to symbolic links and describe cache buster
 
 ##Access private repos
 If you are working with a private repo, you need to be able to connect to it from the server. The steps below requires you to have SSH access to the remote server, so make sure that you have that by following the steps under "Setting up an SSH connection to remote server".
