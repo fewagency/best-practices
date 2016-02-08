@@ -55,7 +55,7 @@ Capistrano must be able to SSH to the server(s) to which deploys should be done.
 1. Log in to cPanel and go to "SSH access" ("SSH-åtkomst")
 2. Do one of the following: 
     - Fire up a new browser tab and go to https://www.oderland.se/clients/knowledgebase/102/Ansluta-med-SSH.html (a guide by Oderland in Swedish on how to set up SSH keys in cPanel in their environment) and follow the guide there.
-    - Or, better yet, if you already have an existing keypair (whch doesn't have to be set up on the server you want to conect to) (if you are uncertain, check this guide https://help.github.com/articles/checking-for-existing-ssh-keys/ ):
+    - Or, better yet, if you already have an existing keypair (whch doesn't have to be set up on the server you want to connect to) (if you are uncertain, check this guide https://help.github.com/articles/checking-for-existing-ssh-keys/ ):
         1. Open the public key (with the .pub extension) in a texteditor
         2. Copy the contents of the public key
         3. Click "Import key" in cPanel (under "SSH access")
