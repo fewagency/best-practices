@@ -1,20 +1,23 @@
-#Bedrock
+#Getting up and running with Bedrock
+This is a guide mainly aimed to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
 
-Bedrock is created by the team behind Sage and is described as "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
-https://roots.io/bedrock/docs/installing-bedrock/.
+##Bedrock
 
-##Getting up and running with Bedrock
-While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
+Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is described as "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
+https://roots.io/bedrock.
 
+##OMG, this is a long document!
 Fear not. While the guide is pretty lengthy, you will probably onlye have to go through it once per project and then forget about it.
 
-This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not doing that: why are you not doing that?
+While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
+
+This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not doing that: why are you not doing that? If you still don't want to use Sage, you should probably be able to use this guide anyways and skip the Sage specific parts.
 
 ###Setting up Bedrock locally from scratch
 These steps should be taken if yo are the first developer to work on a project. If you are supposed to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
 
 1. Make sure you have a MySQL-database to use for the WP-installation.
-2. The entire project will be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally after step 1 or however you like to do it. The important thing is that the entire project is in the repo. So if you unzip Bedrock (see next step) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo). Set the repo as public for now and we will guide you on how to use private repos later on in this document.
+2. The entire project will be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally after step 1 or however you like to do it. The important thing is that the entire project is in the repo. So if you unzip Bedrock (see next step) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo). If you are creating a private repo, 
 3. Install [Composer](https://getcomposer.org/) if you don't already have it installed.
 4. Follow the steps listed here: https://roots.io/bedrock/docs/installing-bedrock/ with the following exceptions:
     - Instead of cloning the git repo, download it as a zip, unzip it and move the ocntent of bedrock-matser to the local projects web root. We don't want the git files for Bedrock in our repo.
@@ -44,7 +47,7 @@ TODO: If you to continue work on an existing Bedrock based project,
 ###Setting up site folder on remote server
 We need a directory and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on. Make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
 
-###Setting up SSH-connection to remote server
+###Setting up an SSH connection to remote server
 Capistrano must be able to SSH to the server(s) to which deploys should be done. Here's how to get that up and running when working on a a shared Oderland server:
 
 1. Log in to cPanel and go to "SSH access" ("SSH-åtkomst")
@@ -158,7 +161,7 @@ For W3TC to work, we need to do some extra stuff:
 'web/app/w3tc-config'
 ```
 
-3. Run `composer update`on your local machine to instal W3TC
+3. Run `composer update`on your local machine to install W3TC
 4. Activate W3C locally if you want to.
 5. If you do activate W3TC locally, make sure that the local versions of the files and directories above are ignored in the git repo.
 6. Create the files and folders that should be symlinked to in shares/web/app on the remote servers. These files and folders can just be empty files, W3TC will write to them later on.
@@ -170,11 +173,40 @@ For W3TC to work, we need to do some extra stuff:
 12. Check shared/web/app/cache/page_enhanced/ and make sure that there are some files and folders there that represent the pages you just visited.
 
 ###Access private repos
-Often, the main repo will be a private repo...
+If you are working with a private repo, you need to be able to connect to it from the server. The steps below requires you to have SSH access to the remote server, so make sure that you have that by wollowing the steps under "Setting up an SSH connection to remote server".
+GitHub offers a [cpl of solutions for managing deploy keys](https://developer.github.com/guides/managing-deploy-keys/) and we have chosen to use the Machine Users solution. This is mainly because the machine user can be put in a team that can have  read and fork access only to repos but also because a machine user allows us to set up the SSH key on the server once and then connect the machine user to the repos we want to deploy to the server.
 
-TODO: How to access private repos from Oderland
+We have created a machine user GitHub account who is part of the FEW Organization at GitHub and also a member of the team Machine Users. Login credentials for this user can be found at the usual place.
 
-TODO: How to handle automatic updates
+In order to avoid creating multiple keys for the machine user at a server, let's always name the SSH key for the machine user the same for every server so we easily can see if the machine user has a key. The name that the key should have can be found at the same place as the username/password.
+
+How to set up SSH key for our machine user (taken in parts from [GitHubs SSH key guide](https://help.github.com/articles/generating-an-ssh-key/)):
+
+1. Start by adding the machine user to your repo:
+    - Log on to GitHub with your standard account (the one you created the repo with)
+    - Go to the repos main page -> "Settings" -> "Collaborators and teams" and add the team "Machine users". Make sure that the access rights are set to "Read".
+    - You should now be able to log on to GitHUb with the machine user account, navigate to the dashboard for FEW and be able to see the private repo in the list.
+2. Now it's time to set up an SSH key for the machine user on the remote server. Let's start by SSHing to the remote server.
+3. Run `ls -al ~/.ssh` to list all existing keys.
+4. If there already is a key named git_few_machine_user, jump to step 6
+5. If a key named git_few_machine_user does not already exist, let's create one by running `ssh-keygen -t rsa -b 4096 -C "developers@fewagency.se"`
+    - When asked where to store the key, enter `[PATH_TO_SSH_DIR]/git_few_machine_user`. For example `/home/fewgenc/.ssh/git_few_machine_user`
+    - When asked for a password, just press enter. This is beacuse we can't have keys with passwords when Capistrano executes the git command on the server.
+6. Now, we need to add the public key to the machine user on GitHub. If a git_few_machine_user key already existed, you might want to check if the key already has been connected. If you created a brand new key, skip to step 9, otherwise, go to next step.
+7. Get the fingerprint of the key by running `ssh-keygen -lf /path/to/ssh/key` (replace the path with the path to the private version of git_few_machine_user).
+8. Log on to GitHub with the machine user account and go to "[Settings -> SSH keys](https://github.com/settings/ssh)" and see if there is a finger print in the list matching the one listed in the step above. If there is, jump to step X, otherwise, go to the next step. 
+9. Let's get the value of the public key by opening it in VI. Run `vi [PATH_TO_PUBLIC_KEY]`. In our example above it would be `vi /home/fewgenc/.ssh/git_few_machine_user.pub`. It is *very important* to open the public key (.pub). Copy the content of the key using good old CMD-C.
+10. Log on to GitHub with the machine user account and go to "[Settings -> SSH keys](https://github.com/settings/ssh)". Click "New SSH key", enter a name so that we can identify the server, paste the content of the public key in the key field and save.
+11. Now, we need to tell the remote server to use our newly created key when communicating with GitHub, so run `vi ~/.ssh/config` to edit the config file.
+12. Paste the following lines in VI (if not already present). IdentiyFile must point to the private SSH key for the machine user.
+
+        Host github.com
+          Hostname github.com
+          IdentityFile ~/.ssh/git_few_machine_user
+          User git
+
+13. At the remote server, run `ssh -T git@github.com`. The response should be something like "Hi [machine user account name]! You've successfully authenticated, but GitHub does not provide shell access.". If it is not, your best bet may be to start over from step 1 in this list.
+14. If step 12 succeeds, run `git ls-remote -h git@github.com:USER/REPO.git` where the last argument should be the same SSH url of the repo.
 
  
 
