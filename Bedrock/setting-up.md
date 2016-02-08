@@ -12,7 +12,7 @@ While there is an official guide on how to get up and running with Bedrock, ther
 
 This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not doing that: why are you not doing that? If you still don't want to use Sage, you should probably be able to use this guide anyways and skip the Sage specific parts.
 
-###Setting up Bedrock locally from scratch
+##Setting up Bedrock locally from scratch
 These steps should be taken if yo are the first developer to work on a project. If you are supposed to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
 
 1. Make sure you have a MySQL-database to use for the WP-installation.
@@ -32,10 +32,10 @@ Note that since both Bedrock and Sage comes with its own .gitignore file, we now
 
 If you haven't already made a git commit, now may be a good time to do one.
 
-###Cloning an existing Bedrock based project
+##Cloning an existing Bedrock based project
 If you are continuing work on an existing bedrock based project and that project already has remote servers set up, you probably wont have to do much Bedrock or deploy related set up but here's a list of some steps anyways:
 
-1. Follow the steps listed under the [Bedrock install guid](https://roots.io/bedrock/docs/installing-bedrock/) but instead of cloning the Bedrock repo, clone the existing project repo. As for step 4, the project repo probably comes with a theme so you can skip this.
+1. Follow the steps listed under the [Bedrock install guide](https://roots.io/bedrock/docs/installing-bedrock/) but instead of cloning the Bedrock repo, clone the existing project repo. As for step 4, the project repo probably comes with a theme so you can skip this.
 2. Make sure you have SSH access to the remote server by following the steps under "Setting up and SSH connection to a remote server".
 3. In the terminal on your local machine, go to the root directory of the project.
 4. Run `gem install bundler` or, if that doesnt work, `sudo gem install bundler`. If that fails, make sure you have Ruby installed (which you very most likely have). As sepcified in [the bedrock-capistrano guide](https://github.com/roots/bedrock-capistrano#requirements).
@@ -46,10 +46,10 @@ Syncing the database and uploads is outside the scope of this guide.
 
 Make sure that you can SSH to the remote server(s) by following the steps under "Setting up an SSH connection to remote server"
 
-###Setting up site folder on remote server
+##Setting up site folder on remote server
 We need a directory and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on. Make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
 
-###Setting up an SSH connection to a remote server
+##Setting up an SSH connection to a remote server
 Capistrano must be able to SSH to the server(s) to which deploys should be done. If you don't already have SSH access to the server(s), here's how to get that up and running when working on a a shared Oderland server:
 
 1. Log in to cPanel and go to "SSH access" ("SSH-åtkomst")
@@ -67,7 +67,7 @@ Capistrano must be able to SSH to the server(s) to which deploys should be done.
         
 You should now be able to log in to the server by running the following in the terminal "ssh username@domain.void" where user is the master user name and server.void is the main domain for the Oderland account.        
 
-###Setting up Composer on remote server
+##Setting up Composer on remote server
 We also need to be able to run [Composer](http://getcomposer.org) on the server so let's set that up.
 
 SSH to the server, go to the directory that you want to deploy to (that you set up under "Setting up site folder on remote server") and try running `composer`.
@@ -110,7 +110,7 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 19. Do a css-change on your local machine, for example setting the body-bg to red in assets/style/main.scss
 10. Execute `bundle exec cap production deploy`, wait for it to finish and reload the site on the remote server in your browser. The changes in the css should now be visible. Note that you didn't have to git commit anything when you only change assets since they are uploaded from your local machine.
 
-###Add plugins
+##Add plugins
 Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .
 
 However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, follow the steps outlined here to create a custom Composer package. We have created http://composerpackages.few.agency that we can use internally to store such packages. Example code for ACF Pro can be found further down in this document.
@@ -174,7 +174,7 @@ For W3TC to work, we need to do some extra stuff:
 11. Visit the site without being logged in.
 12. Check shared/web/app/cache/page_enhanced/ and make sure that there are some files and folders there that represent the pages you just visited.
 
-###Access private repos
+##Access private repos
 If you are working with a private repo, you need to be able to connect to it from the server. The steps below requires you to have SSH access to the remote server, so make sure that you have that by wollowing the steps under "Setting up an SSH connection to remote server".
 GitHub offers a [cpl of solutions for managing deploy keys](https://developer.github.com/guides/managing-deploy-keys/) and we have chosen to use the Machine Users solution. This is mainly because the machine user can be put in a team that can have  read and fork access only to repos but also because a machine user allows us to set up the SSH key on the server once and then connect the machine user to the repos we want to deploy to the server.
 
