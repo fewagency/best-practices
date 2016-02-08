@@ -1,5 +1,5 @@
 #Getting up and running with Bedrock
-This is a guide mainly aimed to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
+This is a guide aims to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
 
 ##Bedrock
 Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is described as "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
