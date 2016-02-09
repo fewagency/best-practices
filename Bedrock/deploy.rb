@@ -1,28 +1,32 @@
 # deploy.rb from https://github.com/roots/bedrock-capistrano modified by FEW Agency, developers@fewagency.se
 
 # FEW-comment: from Capistrano doc:
-# Here we'd set the name of the application, ideally in a way that's safe for
+# Here we'd set the name of the application, must be in a format that's safe for
 # filenames on your target operating system.
 set :application, 'APPLICATIONNAME'
 
 # FEW-comment: use the SSH url for the repo from GitHub
-set :repo_url, 'git@github.com:USER/REPO.GIT'
+set :repo_url, 'git@github.com:USER/REPO.git'
 
 # FEW-addition: name of the dir where theme is placed. Not the entire path.
 set :theme_directory_name, 'THEME_DIR_NAME'
 
-# FEW-addition. Use in case composer command does not work. Set value to point to where you put composer.phar on remote
+# FEW-addition. Use in case composer command does not work.
+# Set value to point to where you put composer.phar on remote server.
 # https://discourse.roots.io/t/deploying-wordpress-with-capistrano-screencast/863/25
 SSHKit.config.command_map[:composer] = "~/bin/composer.phar"
 
 # FEW-comment: this should be set to the target directory of the deploy on the server.
 # So if your site is placed in /home/few/sites/bedrock-test.com/, that is the path to use.
-# Make sure the path starts at the root directory and ends with a /
+# Make sure the path starts at the root directory and doesnt end with a /
 set :deploy_to, -> { "/PATH" }
 
 # FEW-addition. We must change tmp dir since Oderland does not allow us to execute files placed in /tmp/
 # Set it to a nice place, preferrably outside any public folders. Should not end with a /
 set :tmp_dir, "/PATH"
+
+# Use :debug for more verbose output when troubleshooting, Default is :info
+set :log_level, :info
 
 # Branch options
 # Prompts for the branch name (defaults to current branch)
@@ -37,14 +41,16 @@ set :ssh_options, {
   :forward_agent => false
 }
 
-# Use :debug for more verbose output when troubleshooting
-set :log_level, :debug
-
 # Apache users with .htaccess files:
-# it needs to be added to linked_files so it persists across deploys:
+# the .htaccess needs to be added to linked_files so it persists across deploys:
 set :linked_files, fetch(:linked_files, []).push('.env', 'web/.htaccess')
-#set :linked_files, fetch(:linked_files, []).push('.env')
 set :linked_dirs, fetch(:linked_dirs, []).push('web/app/uploads')
+
+# FEW Additions. There shouldnt be any need to change anything here
+set :theme_path, Pathname.new('web/app/themes').join(fetch(:theme_directory_name))
+set :local_app_path, Pathname.new(Dir.pwd)
+set :local_theme_path, fetch(:local_app_path).join(fetch(:theme_path))
+set :local_dist_path, fetch(:local_theme_path).join('dist')
 
 namespace :deploy do
   desc 'Restart application'
@@ -96,22 +102,11 @@ end
 
 namespace :deploy do
 
-  # Theme path
-  set :theme_path, Pathname.new('web/app/themes').join(fetch(:theme_directory_name))
-
-  # Local Paths
-  set :local_app_path, Pathname.new(Dir.pwd)
-  set :local_theme_path, fetch(:local_app_path).join(fetch(:theme_path))
-  set :local_dist_path, fetch(:local_theme_path).join('dist')
-
   task :compile do
-    #print " Local theme path #{fetch(:local_theme_path)} "
+    #puts "Running gulp --production on local theme path #{fetch(:local_theme_path)} "
     run_locally do
-      #within fetch(:local_theme_path) do
-        #execute 'gulp --production' # http://stackoverflow.com/a/19459221
-        # FEW-modification: execute gulp on absolute path
-        execute "cd #{fetch(:local_theme_path)}; gulp --production"
-      #end
+      # FEW-modification: execute gulp on absolute path
+      execute "cd #{fetch(:local_theme_path)}; gulp --production"
     end
   end
 
@@ -121,14 +116,35 @@ namespace :deploy do
       # Remote Paths (Lazy-load until actual deploy)
       set :remote_dist_path, -> { release_path.join(fetch(:theme_path)).join('dist') }
 
-      print " Your local distribution path: #{fetch(:local_dist_path)} "
-      print " Your remote distribution path: #{fetch(:remote_dist_path)} "
-      print " Uploading files to remote "
+      puts "Your local distribution path: #{fetch(:local_dist_path)} "
+      puts "Your remote distribution path: #{fetch(:remote_dist_path)} "
+      puts "Uploading files to remote "
       upload! fetch(:local_dist_path).to_s, fetch(:remote_dist_path), recursive: true
     end
   end
 
   task assets: %w(compile copy)
+
+end
+
+# FEW Addition. The below tasks give us a way to deploy only assets by running deploy:assetsonly
+
+namespace :deploy do
+
+  task :copyonly do
+    on roles(:web) do
+
+      set :remote_dist_path, -> { release_path.join(fetch(:theme_path)) }
+      puts "Your local distribution path: #{fetch(:local_dist_path)} "
+      puts "Your remote distribution path: #{fetch(:remote_dist_path)} "
+      puts "Uploading files to remote "
+      upload! fetch(:local_dist_path).to_s, fetch(:remote_dist_path), recursive: true
+    end
+  end
+
+  task assetsonly: %w(deploy:compile copyonly)
+
 end
 
 after 'deploy:updated', 'deploy:assets'
+

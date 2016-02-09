@@ -47,5 +47,8 @@ Here's how to do that:
         
         end
 
-2. Add this line to the end of deploy.rb: `after 'deploy:assets', 'deploy:bustw3tccache'`.
+2. Add these line to the end of deploy.rb: 
+
+        after 'deploy:assets', 'deploy:bustw3tccache'
+        after 'deploy:assetsonly', 'deploy:bustw3tccache'
  
