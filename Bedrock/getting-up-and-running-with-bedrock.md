@@ -10,7 +10,7 @@ If you get totally stuck, here are some resources that may help you:
 Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is described as a "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
 https://roots.io/bedrock.
 
-##OMG, look at the length of this document!
+##OMG, this document is the size of a Stephen King novel!
 Fear not. While the guide is pretty lengthy (partly due to usesless paragraphs like this but also because it contains information on how to add plugins and set up SSH), you will probably only have to go through it once per project and then forget about it.
 
 While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Alos, since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
@@ -126,76 +126,19 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 ##Add plugins
 Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .
 
-However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, read how to work around that under ["Setting up your own private repository" here](http://codelight.eu/using-private-wordpress-repositories-with-composer/). *Important*: when creting the zip, use the following command `zip TARGET.zip -x \*.DS_Store -r DIR_TO_ZIP/` to avoid messing up the directory structure. We have created a subdomain for few.agency that we can use internally to store such packages. Example code for ACF Pro can be found further down in this document.
+However, there are some plugins such as Advanced Custom Fields Pro, that are not available as Composer packages. In that case, read how to work around that in [Custom Composer Packages](custom-composer-packages.md).
 
 ###Custom Composer packages 
 
 Below are some lines that will install some nice plugins. Add all of them or just some to require[] in composer.json in the root of your project.
 
-```javascript
-"elliot-condon/advanced-custom-fields-pro":"5.3.3.2",
-"wpackagist-plugin/w3-total-cache": "dev-trunk",
-"wpackagist-plugin/wordpress-seo": "dev-trunk",
-"wpackagist-plugin/google-analytics-for-wordpress": "dev-trunk",
-"wpackagist-plugin/admin-menu-editor": "dev-trunk"
-```
-If you included ACF and/or W3TC, read on. Otherwise, you can run `composer update` now.
+    "wpackagist-plugin/wordpress-seo": "dev-trunk",
+    "wpackagist-plugin/google-analytics-for-wordpress": "dev-trunk",
+    "wpackagist-plugin/admin-menu-editor": "dev-trunk"
 
-For ACF to work, you must add the following snippet to repositories[] in your Composer file. Make sure to update version and dist.url if needed.
-
-```javascript
-{
-  "type": "package",
-  "package": {
-    "name": "elliot-condon/advanced-custom-fields-pro",
-    "version": "5.3.4",
-    "type": "wordpress-plugin",
-    "dist": {
-      "type": "zip",
-      "url": "http://SET_TO_POINT_TO_ACF_ZIP_AT_OUR_COMPOSER_PACKAGES_SERVER"
-    },
-    "require" : {
-      "fancyguy/webroot-installer": "1.1.0"
-    }
-  }
-}
-```
-
-The snippet above should give you a clue on what to do if you run into other plugins without existing composer packages.
-
-If you didn't include W3TC in the plugins, standing in the root of the project on your local machine, run `composer update`.
-
-For W3TC to work, we need to do some extra stuff:
-
-1. As said here: https://github.com/roots/bedrock/issues/38#issuecomment-170091932, add the below lines to ":linked_files" in deploy.rb.
-
-```ruby
-'web/app/advanced-cache.php',
-'web/app/db.php',
-'web/app/object-cache.php'
-```
-
-2. Then add these lines to ":linked_dirs"
-
-```ruby
-'web/app/uploads',
-'web/app/cache',
-'web/app/w3tc-config'
-```
-
-3. Run `composer update`on your local machine to install W3TC
-4. Activate W3C locally if you want to.
-5. If you do activate W3TC locally, make sure that the local versions of the files and directories that W3TC creates are ignored in the git repo. Note that these does not always include "w3tc" in the folder/file name so be sure to be extra careful about this.
-6. Make sure that you move the lines that W3TC added in web/wp-config.php to the appropriate files in config/. If W3TC should be activated in all environments, simply move it to config/application.php. If it should only be added to for example production, move it to config/environments/production.php.
-6. Create the files and folders that should be symlinked to in shares/web/app on the remote servers. These files and folders can just be empty files, W3TC will write to them later on.
-7. Push composer-files to the git repo
-8. Deploy using Capistrano.
-9. Activate W3TC on remote server
-10. Enable page cache
-11. Visit the site without being logged in.
-12. Check shared/web/app/cache/page_enhanced/ and make sure that there are some files and folders there that represent the pages you just visited.
-
-@Todo: Make sure that we can write to symbolic links and describe cache buster
+If you want to use the W3TC cache plugin, have a look in [W3 Total Cahe with bedrock](../w3-total-cache-with-bedrock.md).
+  
+Feel free to run `composer update`.
 
 ##Access private repos
 If you are working with a private repo, you need to be able to connect to it from the server. The steps below requires you to have SSH access to the remote server, so make sure that you have that by following the steps under "Setting up an SSH connection to remote server".
