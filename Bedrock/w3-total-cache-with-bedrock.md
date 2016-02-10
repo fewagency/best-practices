@@ -52,4 +52,5 @@ Here's how to do that:
         after 'deploy:assets', 'deploy:bustw3tccache'
         after 'deploy:assetsonly', 'deploy:bustw3tccache'
         after 'deploy:rollback', 'deploy:bustw3tccache'
- 
+        
+*Note:* If, for some reason, the cache is not cleared, there is a button under W3TC in WP admin that allows you to clear the cache manually.
