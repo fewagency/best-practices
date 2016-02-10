@@ -11,7 +11,7 @@ Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is
 https://roots.io/bedrock.
 
 ##OMG, this document is the size of a Stephen King novel!
-Fear not. While the guide is pretty lengthy (partly due to usesless paragraphs like this but also because it contains information on how to add plugins and set up SSH), you will probably only have to go through it once per project and then forget about it.
+Fear not. While the guide is a bith lengthy (partly due to usesless paragraphs like this but also because it contains information on how to add plugins and set up SSH), you will probably only have to go through it once per project and then forget about it.
 
 While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Also, since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may also apply to other shared hosting environments.
 
@@ -89,6 +89,8 @@ I have tried adding composer as a global command using different versions of `mv
 
 ###Setting up deploys on your local machine
 
+Make sure you have Composer on your remote server before continuing. Read the section aobove this one for more info on how to do that.
+
 I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) for deploys since Trellis is a bit more than I and Oderland can handle at the moment. Let's set it up using these steps taken from the README of [bedrock-capistrano](https://github.com/roots/bedrock-capistrano/blob/master/README.md):
 
 1. In the terminal on your local machine, go to the root folder of the project ("bedrocktest.local" in our example).
@@ -123,6 +125,21 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 10. Run `bundle exec cap staging deploy:assetsonly`, wait for it to finish and reload the site on the remote server in your browser. The changes in the css should now be visible. Note that you didn't have to git commit anything when you only change assets since they are built on and uploaded from your local machine.
 11. Now make a change in the HTML/PHP code and commit and push the change.
 12. Run `bundle exec cap staging deploy` again and when it has finished, you should see the changes on your remote server.
+
+Pretty nice, right!? So in the future whenever you have only made some changes to the assets that you want to deploy, follow these steps:
+1. In the terminal, navigate to the root folder of the project.
+2. Run `bundle exec cap <environment> deploy:assetsonly` where <environment> is the environment you want t deploy to.
+3. Wait for the script to finish and then reload URL of the remote server you just deployed to to see the changes in all its glory.
+
+When you want to deploy anything else than asssets:
+1. In the terminal, navigate to the root folder of the project.
+2. Run `bundle exec cap <environment> deploy` where <environment> is the environment you want t deploy to.
+3. Wait for the script to finish and then reload URL of the remote server you just deployed to to see the changes in all its glory.
+
+If something went wrong on a deploy:
+1. In the terminal, navigate to the root folder of the project.
+2. Run `bundle exec cap <environment> deploy:rollback`
+3. Wait for the script to finish and then reload URL of the remote server you just deployed to to see the rollback in all its glory.
  
 ##Add plugins
 Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .

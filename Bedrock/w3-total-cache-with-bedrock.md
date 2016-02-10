@@ -51,4 +51,5 @@ Here's how to do that:
 
         after 'deploy:assets', 'deploy:bustw3tccache'
         after 'deploy:assetsonly', 'deploy:bustw3tccache'
+        after 'deploy:rollback', 'deploy:bustw3tccache'
  
