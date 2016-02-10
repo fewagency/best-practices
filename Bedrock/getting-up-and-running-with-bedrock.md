@@ -183,16 +183,18 @@ How to set up SSH key for our machine user (taken in parts from [GitHubs SSH key
 8. Log on to GitHub with the machine user account and go to "[Settings -> SSH keys](https://github.com/settings/ssh)" and see if there is a finger print in the list matching the one listed in the step above. If there is, jump to step X, otherwise, go to the next step. 
 9. Let's get the value of the public key by opening it in VI. Run `vi [PATH_TO_PUBLIC_KEY]`. In our example above it would be `vi /home/fewgenc/.ssh/[MACHINE_USER].pub`. It is *very important* to open the public key (.pub). Copy the content of the key using good old CMD-C.
 10. Log on to GitHub with the machine user account and go to "[Settings -> SSH keys](https://github.com/settings/ssh)". Click "New SSH key", enter a name so that we can identify the server, paste the content of the public key in the key field and save.
-11. Now, we need to tell the remote server to use our newly created key when communicating with GitHub, so run `vi ~/.ssh/config` to edit the config file.
-12. Paste the following lines in VI (if not already present) and write-quit VI (:wq). IdentiyFile must point to the private SSH key for the machine user.
+11. Check if ~.ssh/config exists and remember whether it did or not. 
+12. Now, we need to tell the remote server to use our newly created key when communicating with GitHub, so run `vi ~/.ssh/config` to edit the config file. This will create the file if it did not already exist.
+13. Paste the following lines in Vi (if not already present) and write-quit Vi (:wq). IdentiyFile must point to the private SSH key for the machine user.
 
         Host github.com
           Hostname github.com
           IdentityFile ~/.ssh/[MACHINE_USER]
           User git
 
-13. At the remote server, run `ssh -T git@github.com`. The response should be something like "Hi [MACHINE_USER]! You've successfully authenticated, but GitHub does not provide shell access.". If it is not, your best bet may be to start over from step 1 in this list.
-14. If step 12 succeeds, run `git ls-remote -h git@github.com:USER/REPO.git` where the last argument should be the same SSH url of the repo to verify that you have access to the repo.
+14. If the config file didn't exist before, make sure that it has the right rights by running `chmod 600 ~/.ssh/config`.
+15. At the remote server, run `ssh -T git@github.com`. The response should be something like "Hi [MACHINE_USER]! You've successfully authenticated, but GitHub does not provide shell access.". If it is not, your best bet may be to start over from step 1 in this list.
+16. If step 12 succeeds, run `git ls-remote -h git@github.com:USER/REPO.git` where the last argument should be the same SSH url of the repo to verify that you have access to the repo.
 
  
 
