@@ -2,9 +2,9 @@
 This is guide aims to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
 
 If you get totally stuck, here are some resources that may help you:
-[Roots Discourse](https://discourse.roots.io). Actually, you may want to head over and read this through really quick. It's nowhere near as long as this and may be good to have in the back of the mind when reading the rest of this document.
+[Roots Discourse](https://discourse.roots.io). Actually, you may want to head over and read this through really quick. It's nowhere near as long as this and may be good to have in the back of your mind when reading the rest of this document.
 [Capistrano Website with manual](http://capistranorb.com/)
-[Screencast on deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/). This video also exist in our shared Dropbox folder. Note that it is getting a bit old and may contain outdated information.
+[Screencast on deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/). FEW: This video also exist in our shared Dropbox folder. Note that it is getting a bit old and may contain outdated information.
 
 ##Bedrock?
 Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is described as a "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
@@ -13,12 +13,12 @@ https://roots.io/bedrock.
 ##OMG, this document is the size of a Stephen King novel!
 Fear not. While the guide is pretty lengthy (partly due to usesless paragraphs like this but also because it contains information on how to add plugins and set up SSH), you will probably only have to go through it once per project and then forget about it.
 
-While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Alos, since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may of course also apply to other shared webhosts.
+While there is an official guide on how to get up and running with Bedrock, there are some things missing in it. Also, since we are often using [Oderland](http://oderland.se) for hosting, this guide also describes some extra steps necessary to get stuff up and running in their shared environment. The Oderland-steps may also apply to other shared hosting environments.
 
-This guide assumes in some places that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not using Sage: why are you not using Sage? If you still don't want to use Sage, you should probably be able to use this guide anyway and skip the Sage specific parts. Sage!
+In some places, this guide assumes that you are developing a theme based on [Sage](https://roots.io/sage/). If you are not using Sage: why are you not using Sage? If you still don't want to use Sage, you should probably be able to use this guide anyway and skip the Sage specific parts. Sage!
 
 ##Setting up Bedrock locally from scratch
-These steps should be taken if yo are the first developer to work on a project. If you are supposed to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
+These steps should be taken if yo are the first developer to work on a project. If you are to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
 
 1. Make sure you have a host and MySQL-database to use for the WP-installation on your computer.
 2. The entire project must be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally or however you like to do it. The important thing is that the entire project is in the repo. So if you move the content of bedrock-master.zip (see step 4) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo).
