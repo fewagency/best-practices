@@ -21,7 +21,7 @@ In some places, this guide assumes that you are developing a theme based on [Sag
 These steps should be taken if yo are the first developer to work on a project. If you are to continue work on an existing Bedrock based project, check under "Cloning an existing Bedrock based project".
 
 1. Make sure you have a host and MySQL-database to use for the WP-installation on your computer.
-2. The entire project must be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally or however you like to do it. The important thing is that the entire project is in the repo. So if you move the content of bedrock-master.zip (see step 4) to the directory "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo).
+2. The entire project must be hosted on GitHub so either create an empty repo there that you clone to your local machine or create it locally or however you like to do it. The important thing is that the entire project is in the repo. So if you move the content of bedrock-master.zip (see step 4) to the folder "bedrocktest.local", all files in "bedrocktest.local" should be in the repo (the .gitignore of Bedrock, and later on Sage, will keep unwanted files out of the repo).
 3. Install [Composer](https://getcomposer.org/) on your local machine if you don't already have it installed.
 4. Follow the steps listed here: https://roots.io/bedrock/docs/installing-bedrock/ with the following exceptions:
     - Instead of cloning the git repo, download it as a zip, unzip it and move the content of bedrock-master to the local projects web root. We don't want the git files for Bedrock in our repo.
@@ -33,7 +33,7 @@ If all has gone according to plans so far and you have entered correct data in t
 
 If you are using Sage and have activated the Sage based them, now might be a good time to exceute the commands listed under [Theme development in Sages' README](https://github.com/roots/sage/blob/master/README.md#theme-development).
 
-After you have activated your own theme, yo can go to `web/wp/app/wp-content/themes` and delete all the themes there. This is not a necessary step since the app-directory is in Bedrocks .gitignore but it does feel good to remove a bunch of unnecessary files from your local environment, doesn't it?
+After you have activated your own theme, yo can go to `web/wp/app/wp-content/themes` and delete all the themes there. This is not a necessary step since the app-folder is in Bedrocks .gitignore but it does feel good to remove a bunch of unnecessary files from your local environment, doesn't it?
 
 Note that since both Bedrock and Sage comes with its own .gitignore file, we now have two such files. This is totally cool but if you want to you could move Sages' ignore patterns to Bedrocks .gitignore at the root (remember to update the paths to point to the theme).
 
@@ -44,7 +44,7 @@ If you are continuing work on an existing bedrock based project and that project
 
 1. Follow the steps listed under the [Bedrock install guide](https://roots.io/bedrock/docs/installing-bedrock/) but instead of cloning the Bedrock repo, clone the existing project repo. As for step 4, the project repo probably comes with a theme so you can skip this.
 2. Make sure you have SSH access to the remote server by following the steps under "Setting up and SSH connection to a remote server".
-3. In the terminal on your local machine, go to the root directory of the project.
+3. In the terminal on your local machine, go to the root folder of the project.
 4. Run `gem install bundler` or, if that doesnt work, `sudo gem install bundler`. If that fails, make sure you have Ruby installed (which you very most likely have). As sepcified in [the bedrock-capistrano guide](https://github.com/roots/bedrock-capistrano#requirements).
 5. Still in the root dir of your project, run `bundle install`.
 6. You should now be able to execute step 15 under "Setting up deploys on your local machine" in this guide.
@@ -54,7 +54,7 @@ Syncing the database and uploads is outside the scope of this guide.
 Make sure that you can SSH to the remote server(s) by following the steps under "Setting up an SSH connection to remote server"
 
 ##Setting up site folder on remote server
-We need a directory and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on when composer have created directories for us. While you wont be able to see anything Bedrock/Wordpress related there, make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
+We need a folder and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on when composer have created folders for us. While you wont be able to see anything Bedrock/Wordpress related there, make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
 
 ##Setting up an SSH connection to a remote server
 Capistrano must be able to SSH to the server(s) to which deploys should be done. If you don't already have SSH access to the server(s), here's how to get that up and running when working on a a shared Oderland server:
@@ -77,12 +77,12 @@ You should now be able to log in to the server by running the following in the t
 ##Setting up Composer on remote server
 We also need to be able to run [Composer](http://getcomposer.org) on the server so let's set that up.
 
-SSH to the server, go to the directory that you want to deploy to (that you set up under "Setting up site folder on remote server") and try running `composer`.
+SSH to the server, go to the folder that you want to deploy to (that you set up under "Setting up site folder on remote server") and try running `composer`.
 
 If the command works, you should be able to skip to the next section. If the command does not work, you need to add Composer. This is how we have done it at Oderland:
 
-1. You need to put Composer somewhere on the server, a good idea is to put it in a directory named "bin" in the home directory. So run `mkdir -p ~/bin` which will create a directory named bin if it does not already exist. 
-2. Navigate to the bin directory and run `php -r "readfile('https://getcomposer.org/installer');" | php` as described in the getting started guide on http://getcomposer.org.
+1. You need to put Composer somewhere on the server, a good idea is to put it in a folder named "bin" in the home folder. So run `mkdir -p ~/bin` which will create a folder named bin if it does not already exist. 
+2. Navigate to the bin folder and run `php -r "readfile('https://getcomposer.org/installer');" | php` as described in the getting started guide on http://getcomposer.org.
 4. You should now be able to run `php composer.phar about` and get a short info text about Composer in return.
 
 I have tried adding composer as a global command using different versions of `mv composer.phar /usr/local/bin/composer` and adding it to PATH but can not get that to work when running Capistrano locally. So unless we can come up with a better solution we have to make sure to execute step 8 under "Setting up deploys to your local machine".
@@ -91,11 +91,11 @@ I have tried adding composer as a global command using different versions of `mv
 
 I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) for deploys since Trellis is a bit more than I and Oderland can handle at the moment. Let's set it up using these steps taken from the README of [bedrock-capistrano](https://github.com/roots/bedrock-capistrano/blob/master/README.md):
 
-1. In the terminal on your local machine, go to the root directory of the project ("bedrocktest.local" in our example).
+1. In the terminal on your local machine, go to the root folder of the project ("bedrocktest.local" in our example).
 2. Run `gem install bundler` or, if that doesnt work, `sudo gem install bundler`. If that fails, make sure you have Ruby installed (which you very most likely have).
 3. Download [bedrock-capistrano](https://github.com/roots/bedrock-capistrano) and unzip it.
 4. Carry out step 1-2 under ["Installation/configuration" in the bedrock-capistrano README](https://github.com/roots/bedrock-capistrano/blob/master/README.md#installationconfiguration).
-5. Delete the bedrock-capistrano directory if it is in your project directory. There's no need for it anymore.
+5. Delete the bedrock-capistrano folder if it is in your project folder. There's no need for it anymore.
 6. In the root dir of your project on your local machine, run `bundle install`.
 7. Replace config/deploy.rb with [our modified deploy.rb](https://gist.github.com/folbert/ba377edfe0a22a768a2a). Search for "FEW" in that file if you want to see what we have changed/added. Make sure that you set correct values for every line starting with "set". Note that we are building assets locally and uploading them from our local machine to remote server. This is not part of the original Bedrock deploy process (in fact, there is no task handling uploading assets at all for Bedrock). We could of course add built assets to the GitHUb repo but that's not how the cool people do it. But...: *Cool feature in modified deploy.rb:* It gives you a way to run `bundle exec cap <stage> deploy:assetsonly` which will build Sages assets and upload them without pulling from GitHub or changing current. You should of course push to Git once you are done building, but this gives you a way to commit assets without having to push SASS/JS-src files to GitHub which wont be used anyways for assets. 
 8. If we can not get composer to run globally on remote server, make sure that `SSHKit.config.command_map[:composer] = "~/bin/composer.phar"` has the correct value. If this value differs between servers, cut it from deploy.rb and add it to each file in config/deploy.
@@ -109,19 +109,20 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 13. Upload a copy of .env.example to `/shared` on the remote server, rename it to .env and enter the correct data in it. Note that you will probably want to change WP_ENV to production even if you are setting things up on a staging server.
 14. Also on the remote machine, create an empty .htaccess file in shared/web/.
 15. Now, run `bundle exec cap <stage> deploy:check` again. Yoy may run into an error saying "fatal: Not a valid object name", This is due to the fact that you, in staging.rb, have specified a branch name that does not exist in your Git repo. So go ahead and fix that and , hopefully, successfully rerun this step.
-15. Having come this far, on your local machine you can now run `bundle exec cap staging deploy` for a complete deploy. Ut should run successfully all the way to where the last output should be a message that a line was written to revision.log. If so, what just happened was:
-    - You have just downloaded the git repo to the remote server to a new directory in releases which is named after the current date and time
-    - `gulp --production` ran on your local machine and the dist-folder was uploaded to web/app/themes/THEMENAME/ in the newly created release-directory.
-    - The symbolic link for current was changed to point to the new release-folder
+15. Having come this far, on your local machine you can now run `bundle exec cap staging deploy` for a complete deploy. It should run successfully all the way to where the last output should be a message that a line was written to revision.log. If so, what just happened was:
+    - You downloaded the git repo to the remote server to a new folder in releases which is named after the current date and time.
+    - `composer install` was executed in the newly created folder.
+    - `gulp --production` ran on your local machine and the content of the dist-folder was uploaded to web/app/themes/THEMENAME/dist in the newly created release-folder.
+    - The symbolic link named "current" at the root of the project was changed to point to the newly created folder in releases on the server.
     - If there were more than five releases, the oldest of them were deleted so there should be a maximum of four old folders and the current release in the release folder.
     - A line has been written to revision.log telling us that you performed a deploy and what revision of the git repo you deployed. 
 16. You should now be able to go to http://example.com/wp/wp-admin and set up Wordpress.
 17. Activate the theme we want to work with.
 18. Visit the frontend to make sure it looks ok.
 19. Do a css-change on your local machine, for example setting the body-bg to red in assets/style/main.scss
-10. Run `bundle exec cap staging deploy`, wait for it to finish and reload the site on the remote server in your browser. The changes in the css should now be visible. Note that you didn't have to git commit anything when you only change assets since they are uploaded from your local machine.
+10. Run `bundle exec cap staging deploy:assetsonly`, wait for it to finish and reload the site on the remote server in your browser. The changes in the css should now be visible. Note that you didn't have to git commit anything when you only change assets since they are built on and uploaded from your local machine.
 11. Now make a change in the HTML/PHP code and commit and push the change.
-12. Run `bundle exec cap staging deploy` again and when it has finished, you should see the changes on your remote server. 
+12. Run `bundle exec cap staging deploy` again and when it has finished, you should see the changes on your remote server.
  
 ##Add plugins
 Plugins should also be handled using Composer. There's a guide on this under "Plugins" at https://roots.io/using-composer-with-wordpress/. Also some reading here about mu-plugins: https://roots.io/bedrock/docs/mu-plugins-autoloader/. Mu-plugins are must-use-plugins and is described here: https://codex.wordpress.org/Must_Use_Plugins .
