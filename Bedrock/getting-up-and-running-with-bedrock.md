@@ -54,7 +54,7 @@ Syncing the database and uploads is outside the scope of this guide.
 Make sure that you can SSH to the remote server(s) by following the steps under "Setting up an SSH connection to remote server"
 
 ##Setting up site folder on remote server
-We need a directory and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on. Make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
+We need a directory and URL where the site will reside on the remote server(s) so, for Oderland, log in to cPanel and set that up as usual. You can set the doc root as usual for now, we will change that later on when composer have created directories for us. While you wont be able to see anything Bedrock/Wordpress related there, make sure that you can surf to the URL. While we are at it, set up a database to use as well and keep the username/password for later.
 
 ##Setting up an SSH connection to a remote server
 Capistrano must be able to SSH to the server(s) to which deploys should be done. If you don't already have SSH access to the server(s), here's how to get that up and running when working on a a shared Oderland server:
@@ -63,16 +63,16 @@ Capistrano must be able to SSH to the server(s) to which deploys should be done.
 2. Do one of the following: 
     - Fire up a new browser tab and go to https://www.oderland.se/clients/knowledgebase/102/Ansluta-med-SSH.html (a guide by Oderland in Swedish on how to set up SSH keys in cPanel in their environment) and follow the guide there.
     - Or, better yet, if you already have an existing keypair on your local machine (if you are uncertain, check this guide https://help.github.com/articles/checking-for-existing-ssh-keys/ ):
-        1. Open the public key (with the .pub extension) in a texteditor
-        2. Copy the contents of the public key
+        1. Open the public key (with the .pub extension) in a texteditor like Vi.
+        2. Copy the contents of the public key.
         3. Under SSH Access in cPanel, click "Import key"
-        4. Give the key a name, preferrably one that identifies your machine
+        4. Give the key a name, preferrably one that identifies you and/or your machine
         5. Paste what you copied in step 2 to the "Public key" field
         6. Leave "private key" and "pass phrase" empty.
         7. Save and go back to "SSH access".
         8. Click on "handle" next to the newly imported key and then authorize it.
         
-You should now be able to log in to the server by running the following in the terminal "ssh username@domain.void" where user is the master user name and server.void is the main domain for the Oderland account.        
+You should now be able to log in to the server by running the following in the terminal "ssh username@domain.void" where user is the master user name and domain.void is the main domain for the Oderland account.        
 
 ##Setting up Composer on remote server
 We also need to be able to run [Composer](http://getcomposer.org) on the server so let's set that up.
