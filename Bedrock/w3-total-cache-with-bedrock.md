@@ -1,8 +1,8 @@
 #W3 Total Cache with Bedrock
 
-I know that W3TC and other cache plugins are sometimes frowned upon by people who recommends using Varnish or Memcached instead. Unfortunately it is not always possible to use those systems, fore example when in a shared environment.
+W3TC and other cache plugins are sometimes frowned upon by people who recommends using Varnish or Memcached instead. Unfortunately it is not always possible to use those systems, fore example when in a shared environment.
  
- Using W3TC with Bedrock does require a bit of work but it is probably worth it in order to have a faster website.  
+Using W3TC with Bedrock does require a bit of work but it is probably worth it in order to have a faster website.  
 
 ##Install
 1. Add the following line to composer.json `"wpackagist-plugin/w3-total-cache": "dev-trunk"` and run `composer update`.
