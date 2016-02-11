@@ -30,13 +30,19 @@ TODO: Through Envoyer
 TODO: Set up health-check URL
 
 ### Deployment hooks
-TODO: Linked folders in Envoyer
+TODO: Set up _Linked Folders_ in Envoyer: `node_modules`, `bower_components`
 
 #### After _Install Composer Dependencies_
 _npm install_:
 ```sh
 cd {{release}}
 npm install --silent
+```
+
+_bower install_:
+```sh
+cd {{release}}
+bower install
 ```
 
 _gulp_:
