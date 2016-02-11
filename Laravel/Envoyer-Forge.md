@@ -29,11 +29,12 @@ If no swap file is created `npm install` will probably fail later.
 
 ## Configure deploy
 TODO: Through Envoyer
+TODO: Set up health-check URL
 
 ## Editing `.env`
 ...is best done via the _Environment_ tab in Forge's _Site details_, or directly on the server.
 
-**Caution:** Envoyer also has an option for editing `.env`, but that keeps the contents (encrypted by a key) within Envoyer and manual changes made to the file on the server may be overwritten.
+**Caution:** Envoyer also has an _Manage Environment_-option for editing the `.env`, but that keeps the contents (encrypted by a key) within Envoyer and manual changes made to the file on the server may be overwritten.
 
 ## SSL setup
 Certificates are managed through the _SSL Certificates_ tab in Forge's _Site details_, for example using [LetsEncrypt](https://letsencrypt.org).
