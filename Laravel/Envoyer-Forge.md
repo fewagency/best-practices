@@ -5,10 +5,10 @@ If you're using Forge for server creation, start at https://forge.laravel.com/se
 
 TODO: Set the web directory to `/current/public`
 
-### Create swap file on low RAM servers
-When creating a smaller server (e.g. 512MB RAM) make sure to set up a swap file for memort intensive tasks, like `npm install`.
+### Swap file needed on low RAM servers
+When creating a smaller server (e.g. 512MB RAM) make sure to set up a swap file for memory intensive tasks, like `npm install`.
 
-This can be set up and reused as a Forge recipe (https://forge.laravel.com/recipes) or run in terminal:
+A swap file can be set up and reused as a Forge recipe (https://forge.laravel.com/recipes) or run in terminal:
 
 ```sh
 if [ -f /swapfile ]; then
