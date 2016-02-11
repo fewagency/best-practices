@@ -1,7 +1,7 @@
-# Tips for deploying Laravel projects using [Envoyer](https://envoyer.io/) & [Forge](https://forge.laravel.com/)
+# Deploying Laravel projects with [Envoyer](https://envoyer.io/) & [Forge](https://forge.laravel.com/)
 
 ## Create the server
-If you're using Forge for server creation, start at (https://forge.laravel.com/servers).
+If you're using Forge for server creation, start at https://forge.laravel.com/servers.
 TODO: Set the web directory to `/current/public`
 
 ### Swap file on low RAM servers
