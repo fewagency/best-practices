@@ -52,6 +52,8 @@ cd {{release}}
 gulp --production
 ```
 
+**Caution:** Laravel Elixir unfortunately doesn't make gulp return a non-0 exit code on errors. So if elixir fails, it doesn't stop the deploy (see https://github.com/laravel/elixir/issues/71).
+
 #### After _Activate New Release_
 _Database migration_:
 ```sh
