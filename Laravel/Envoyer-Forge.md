@@ -52,7 +52,7 @@ cd {{release}}
 gulp --production
 ```
 
-#### After _Install Composer Dependencies_
+#### After _Activate New Release_
 _Database migration_:
 ```sh
 cd {{release}}
