@@ -33,4 +33,4 @@ The .env-file is best edited via the _Environment_ tab in Forge's _Site details_
 *Caution:* Envoyer also has an option for editing `.env`, but then the content is kept (encrypted by a key) within Envoyer and manual changes made to the file on the server may be overwritten.
 
 ## SSL setup
-Certificates are managed through the _SSL Certificates_ tab in Forge's _Site details_, for example using [LetsEncrypt])https://letsencrypt.org).
+Certificates are managed through the _SSL Certificates_ tab in Forge's _Site details_, for example using [LetsEncrypt](https://letsencrypt.org).
