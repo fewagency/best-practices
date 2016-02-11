@@ -47,7 +47,7 @@ _ide_helper.php
 
 Add and commit all files to git
 
-Follow [Configure PhpStorm for a Laravel project](PhpStorm/Configure PhpStorm for Laravel project.md)
+Follow [Configure PhpStorm for a Laravel project](/PhpStorm/Configure PhpStorm for Laravel project.md)
 
 ### Configure ide-helper
 ssh into Homestead, cd to the project directory
