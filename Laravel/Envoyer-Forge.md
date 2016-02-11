@@ -5,8 +5,8 @@ If you're using Forge for server creation, start at https://forge.laravel.com/se
 
 TODO: Set the web directory to `/current/public`
 
-### Swap file on low RAM servers
-When creating a smaller server (e.g. 512MB RAM) make sure to create a swap file afterwards.
+### Create swap file on low RAM servers
+When creating a smaller server (e.g. 512MB RAM) make sure to set up a swap file for memort intensive tasks, like `npm install`.
 
 This can be set up and reused as a Forge recipe (https://forge.laravel.com/recipes) or run in terminal:
 
@@ -25,16 +25,37 @@ else
 fi
 ```
 
-If no swap file is created `npm install` will probably fail later.
-
 ## Configure deploy
 TODO: Through Envoyer
 TODO: Set up health-check URL
 
+### Deployment hooks
+TODO: Linked folders in Envoyer
+
+#### After _Install Composer Dependencies_
+_npm install_:
+```sh
+cd {{release}}
+npm install --silent
+```
+
+_gulp_:
+```sh
+cd {{release}}
+gulp --production
+```
+
+#### After _Install Composer Dependencies_
+_Database migration_:
+```sh
+cd {{release}}
+php artisan migrate --force
+```
+
 ## Editing `.env`
 ...is best done via the _Environment_ tab in Forge's _Site details_, or directly on the server.
 
-**Caution:** Envoyer also has an _Manage Environment_-option for editing the `.env`, but that keeps the contents (encrypted by a key) within Envoyer and manual changes made to the file on the server may be overwritten.
+**Caution:** Envoyer also has a _Manage Environment_-option for editing the `.env`, but that keeps the contents (encrypted by a key) within Envoyer and manual changes made to the file on the server may be overwritten.
 
 ## SSL setup
 Certificates are managed through the _SSL Certificates_ tab in Forge's _Site details_, for example using [LetsEncrypt](https://letsencrypt.org).
