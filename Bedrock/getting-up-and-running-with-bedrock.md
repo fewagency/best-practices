@@ -194,7 +194,7 @@ How to set up SSH key for our machine user (taken in parts from [GitHubs SSH key
 
 14. If the config file didn't exist before, make sure that it has the right rights by running `chmod 600 ~/.ssh/config`.
 15. At the remote server, run `ssh -T git@github.com`. The response should be something like "Hi [MACHINE_USER]! You've successfully authenticated, but GitHub does not provide shell access.". If it is not, your best bet may be to start over from step 1 in this list.
-16. If step 12 succeeds, run `git ls-remote -h git@github.com:USER/REPO.git` where the last argument should be the same SSH url of the repo to verify that you have access to the repo.
+16. If step 12 succeeds, run `git ls-remote -h git@github.com:USER/REPO.git` where the last argument should be the same SSH url of the repo. Thi is to verify that you have access to the repo.
 
  
 
