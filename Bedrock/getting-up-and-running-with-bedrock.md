@@ -111,7 +111,7 @@ I have chosen [Bedrock-capistrano](https://github.com/roots/bedrock-capistrano) 
 13. Upload a copy of .env.example to `/shared` on the remote server, rename it to .env and enter the correct data in it. Note that you will probably want to change WP_ENV to production even if you are setting things up on a staging server.
 14. Also on the remote machine, create an empty .htaccess file in shared/web/.
 15. Now, run `bundle exec cap <stage> deploy:check` again. Yoy may run into an error saying "fatal: Not a valid object name", This is due to the fact that you, in staging.rb, have specified a branch name that does not exist in your Git repo. So go ahead and fix that and , hopefully, successfully rerun this step.
-15. Having come this far, on your local machine you can now run `bundle exec cap staging deploy` for a complete deploy. It should run successfully all the way to where the last output should be a message that a line was written to revision.log. If so, what just happened was:
+15. Having come this far, on your local machine you can now run `bundle exec cap staging deploy` for a complete deploy. It should run successfully all the way to where the last output should be a message that a line was written to revision.log. If it did not, make sure that you have pushed to the Git repo after you added Capistrano. If it did run successfully, what just happened was:
     - You downloaded the git repo to the remote server to a new folder in releases which is named after the current date and time.
     - `composer install` was executed in the newly created folder.
     - `gulp --production` ran on your local machine and the content of the dist-folder was uploaded to web/app/themes/THEMENAME/dist in the newly created release-folder.
