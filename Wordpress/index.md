@@ -8,6 +8,7 @@ We build almost all our Wordpress themes on [Sage](https://roots.io/sage/).
 * [Google Analytics by Yoast](https://yoast.com/wordpress/plugins/google-analytics/)
 * [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/)
 * [Advanced Custom Fields](http://www.advancedcustomfields.com) - we have a key for PRO.
+* [WP Migrate DB Pro](https://deliciousbrains.com/wp-migrate-db-pro/)
 
 ##Plugins that may come in handy
 * [Fewbricks](https://github.com/fewagency/fewbricks) - in house developed extension for ACF allowing a developer to handle ACF using code instead of the GUI.
