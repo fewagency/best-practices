@@ -7,7 +7,7 @@ If you get totally stuck, here are some resources that may help you:
 [Screencast on deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/). FEW: This video also exist in our shared Dropbox folder. Note that it is getting a bit old and may contain outdated information.
 
 ##Bedrock?
-Bedrock is created by the good people behind [Sage](http://roots.io/sage) and is described as a "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
+Bedrock is created by the ~~good~~ awesome people behind [Sage](http://roots.io/sage) and is described as a "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure." Read more at 
 https://roots.io/bedrock.
 
 ##OMG, this document is the size of a Stephen King novel!
