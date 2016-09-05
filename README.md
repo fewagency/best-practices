@@ -10,4 +10,4 @@ A FEW ideas that make our lives easier
 
 ## Wordpress
 * [Basic stuff](Wordpress/index.md)
-* [Move multisite](Wordpress/move-multisite.md)
+* [Move multisite](Wordpress/move-multisite.php)
