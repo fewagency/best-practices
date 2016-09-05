@@ -70,7 +70,7 @@ if (!$this->app->environment('production')) {
 ssh into Homestead, cd to the project directory
 > composer update
 
-Commit "ide-helper setup"
+Commit "Setup ide-helper"
 
 ### Setup Behat
 ssh into Homestead, cd to the project directory
@@ -121,7 +121,7 @@ use DatabaseTransactions, Migrator;
 use MailTrap;
 ```
 
-Commit "Behat setup"
+Commit "Setup Behat"
 
 ### Setup PHPUnit
 Edit **tests/TestCase.php** and put this before return statement in *createApplication()*:
@@ -137,10 +137,10 @@ $app['config']->set('database.connections.sqlite.database', ':memory:');
 Artisan::call('migrate');
 ```
 
-Commit "PHPUnit setup"
+Commit "Setup PHPUnit"
 
 ### Optional: Namespace the application
 ssh into Homestead, cd to the project directory
 > php artisan app:name APPNAME
 
-…and commit "App namespacing"
+…and commit "Namespace app"
