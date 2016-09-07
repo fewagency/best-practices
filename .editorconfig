@@ -1,5 +1,6 @@
 ; This file is for unifying the coding style for different editors and IDEs.
 ; More information at http://editorconfig.org
+; This style originates from https://github.com/fewagency/best-practices
 
 root = true
 
@@ -9,10 +10,13 @@ indent_size = 2
 indent_style = space
 end_of_line = lf
 trim_trailing_whitespace = true
+insert_final_newline = true
 
 [*.php]
 indent_size = 4
-insert_final_newline = true
+
+[*.blade.php]
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
