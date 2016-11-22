@@ -1,5 +1,5 @@
 #Getting up and running with Bedrock
-This is guide aims to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we ofte use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
+This is guide aims to aid developers at [FEW](http://fewagency.se) to set up Bedrock in environments that we often use. Hopefully, it can be of help to other developers as well but be aware that there are some FEW specific information ahead. 
 
 If you get totally stuck, here are some resources that may help you:
 [Roots Discourse](https://discourse.roots.io). Actually, you may want to head over and read this through really quick. It's nowhere near as long as this and may be good to have in the back of your mind when reading the rest of this document.
