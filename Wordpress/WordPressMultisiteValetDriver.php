@@ -3,8 +3,7 @@
 /*
 Valet driver for Wordpress Multisite
 
-Drop this file in your ~/.valet/Drivers/ directory
-
+Usage: Drop this file into your ~/.valet/Drivers/ directory
 */
 
 class WordPressMultisiteValetDriver extends WordPressValetDriver
