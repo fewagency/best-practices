@@ -10,4 +10,5 @@ A FEW ideas that make our lives easier
 
 ## Wordpress
 * [Basic stuff](Wordpress/index.md)
+* [Multisite URL rewrites](Wordpress/multisite-url-rewrites.md)
 * [Move multisite](Wordpress/move-multisite.php)
