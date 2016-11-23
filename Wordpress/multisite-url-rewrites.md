@@ -11,7 +11,9 @@ that you can drop into your `~/.valet/Drivers/`.
 ## Homestead
 [Laravel Homestead's](http://laravel.com/docs/homestead) Nginx configuration can be extended using this nifty trick inspired by [Otley](https://laracasts.com/@otley)'s
 [comment](https://laracasts.com/discuss/channels/requests/homestead-provision-deletes-custom-nginx-settings/replies/113240)
-in [this Laracasts thread](https://laracasts.com/discuss/channels/requests/homestead-provision-deletes-custom-nginx-settings):
+from [this Laracasts thread](https://laracasts.com/discuss/channels/requests/homestead-provision-deletes-custom-nginx-settings).
+
+Follow these steps:
 
 1. Find your homestead `scripts` directory in your local machine.
   It may be `~/Homestead/scripts/` or `~/.composer/vendor/laravel/homestead/scripts/`
