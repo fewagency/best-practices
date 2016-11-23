@@ -1,5 +1,12 @@
 <?php
 
+/*
+Valet driver for Wordpress Multisite
+
+Drop this file in your ~/.valet/Drivers/ directory
+
+*/
+
 class WordPressMultisiteValetDriver extends WordPressValetDriver
 {
     /**
