@@ -5,7 +5,7 @@ tells you to add URL rewrite rules, but they're for Apache only...
 
 ## Valet
 For [Laravel Valet](http://laravel.com/docs/valet) we have created
-[a driver file](https://gist.github.com/bjuppa/f11c842fc5e7c5576b3f2c96583f8625)
+[a driver file](WordPressMultisiteValetDriver.php)
 that you can drop into your `~/.valet/Drivers/`.
 
 ## Homestead
