@@ -3,6 +3,8 @@ A FEW ideas that make our lives easier
 
 [The FEW code style](FEW code style.md)
 
+[Laracasts: Setup a mac dev machine from scratch](https://laracasts.com/series/setup-a-mac-dev-machine-from-scratch)
+
 ## Laravel
 
 * [Setup a new Laravel project](Laravel/Setup new Laravel project.md)
