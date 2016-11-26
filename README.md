@@ -15,3 +15,4 @@ A FEW ideas that make our lives easier
 ## Tutorials
 * [Laracasts: Setup a mac dev machine from scratch](https://laracasts.com/series/setup-a-mac-dev-machine-from-scratch)
 * https://www.rithmschool.com/free-courses
+* [Configure Xdebug with PhpStorm](http://tech.mybuilder.com/phpstorm-configuring-and-using-xdebug/)
