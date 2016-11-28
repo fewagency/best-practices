@@ -32,15 +32,14 @@ class WordPressMultisiteValetDriver extends WordPressValetDriver
             $this->public_dir = $public_directory;
             $wp_config_path = $this->realSitePath($sitePath) . "/wp-config.php";
             if (file_exists($wp_config_path)) {
-                $wp_config_content = file_get_contents($wp_config_path);
                 // Look for define('MULTISITE', true in wp-config
-                if (preg_match("/^define\(\s*('|\")MULTISITE\1\s*,\s*true\s*\)/mi", $wp_config_content)) {
+                $env_path = $sitePath . "/.env";
+                if (preg_match("/^define\(\s*('|\")MULTISITE\\1\s*,\s*true\s*\)/mi",
+                        file_get_contents($wp_config_path))
+                    or (file_exists($env_path) and preg_match("/^WP_MULTISITE=true$/mi",
+                        file_get_contents($env_path)))
+                ) {
                     $this->multisite = true;
-                } else {
-                    $env_content = file_get_contents($sitePath . "/.env");
-                    if (preg_match("/^WP_MULTISITE=true$/mi", $env_content)) {
-                        $this->multisite = true;
-                    }
                 }
 
                 return true;
