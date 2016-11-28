@@ -14,6 +14,11 @@ class WordPressMultisiteValetDriver extends WordPressValetDriver
     protected $public_dir = '';
 
     /**
+     * @var bool true if site is detected to be multisite
+     */
+    protected $multisite = false;
+
+    /**
      * Determine if the driver serves the request.
      *
      * @param  string $sitePath
@@ -23,13 +28,23 @@ class WordPressMultisiteValetDriver extends WordPressValetDriver
      */
     public function serves($sitePath, $siteName, $uri)
     {
-        if (file_exists($sitePath . '/wp-config.php')) {
-            return true;
-        }
-        if (file_exists($sitePath . '/public/wp-config.php')) {
-            $this->public_dir = '/public';
+        foreach (['', 'public'] as $public_directory) {
+            $this->public_dir = $public_directory;
+            $wp_config_path = $this->realSitePath($sitePath) . "/wp-config.php";
+            if (file_exists($wp_config_path)) {
+                $wp_config_content = file_get_contents($wp_config_path);
+                // Look for define('MULTISITE', true in wp-config
+                if (preg_match("/^define\(\s*('|\")MULTISITE\1\s*,\s*true\s*\)/mi", $wp_config_content)) {
+                    $this->multisite = true;
+                } else {
+                    $env_content = file_get_contents($sitePath . "/.env");
+                    if (preg_match("/^WP_MULTISITE=true$/mi", $env_content)) {
+                        $this->multisite = true;
+                    }
+                }
 
-            return true;
+                return true;
+            }
         }
 
         return false;
@@ -80,7 +95,7 @@ class WordPressMultisiteValetDriver extends WordPressValetDriver
     protected function realSitePath($sitePath)
     {
         if ($this->public_dir) {
-            $sitePath .= $this->public_dir;
+            $sitePath .= "/" . $this->public_dir;
         }
 
         return $sitePath;
@@ -95,7 +110,7 @@ class WordPressMultisiteValetDriver extends WordPressValetDriver
      */
     protected function rewriteMultisite($sitePath, $uri)
     {
-        if (file_exists($sitePath . '/multisite-directories')) {
+        if ($this->multisite) {
             if (preg_match('/^(.*)?(\/wp-(content|admin|includes).*)/', $uri, $matches)) {
                 //RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
                 $uri = $matches[2];
