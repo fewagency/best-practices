@@ -1,7 +1,7 @@
 # URL Rewrites for WordPress Multisite
 
 When setting up WordPress Multisite [the instructions](https://codex.wordpress.org/Create_A_Network#Step_2:_Allow_Multisite)
-tells you to add URL rewrite rules, but they're for Apache only...
+tells you to add URL rewrite rules, but they're for **Apache** using `.htaccess` only...
 
 ## Valet
 For [Laravel Valet](http://laravel.com/docs/valet) we have created
