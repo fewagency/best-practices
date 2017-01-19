@@ -19,3 +19,10 @@ A FEW ideas that make our lives easier
 ## Tutorials
 * [Laracasts: Setup a mac dev machine from scratch](https://laracasts.com/series/setup-a-mac-dev-machine-from-scratch)
 * https://www.rithmschool.com/free-courses
+
+## Devops
+
+### Did you run into memory problems using `npm` on a small (512MB) [DigitalOcean](http://digitalocean.com) droplet?
+Enable a swapfile using [this nifty shell-script](Devops/createswapfile.sh)!
+
+Bonus tip: If you're using [Forge](https://forge.laravel.com) for server management you can add scripts like this to your [recipies](https://forge.laravel.com/recipes). We have.
