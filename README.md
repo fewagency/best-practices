@@ -21,8 +21,9 @@ A FEW ideas that make our lives easier
 * https://www.rithmschool.com/free-courses
 
 ## Devops
+* [Mastering `bash` and `terminal`](https://www.blockloop.io/mastering-bash-and-terminal)
 
-### Did you run into memory problems using `npm` on a small (512MB) [DigitalOcean](http://digitalocean.com) droplet?
+### Memory problems using `npm` on a small (512MB) [DigitalOcean](http://digitalocean.com) droplet?
 Enable a swapfile using [this nifty shell-script](Devops/createswapfile.sh)!
 
 Bonus tip: If you're using [Forge](https://forge.laravel.com) for server management you can add scripts like this to your [recipies](https://forge.laravel.com/recipes). We have.
