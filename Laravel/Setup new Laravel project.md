@@ -28,9 +28,9 @@ cd into the new project directory
 > chmod u+x artisan
 
 #### On your local machine
-Add the new site to your ~/.homestead/Homestead.yaml (`homestead edit`) and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
+Add the new site to your `~/Homestead/Homestead.yaml` and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
 
-Then add the Homestead ip along with the chosen domain to your **/etc/hosts** file
+Then add the Homestead ip along with the chosen domain to your `/etc/hosts` file
 
 ### Setup in PhpStorm
 Create a new project, select the *Location* & set *Project type* to *PHP Empty Project*, then `OK` and click `Yes` to create a project from existing sources instead (Don’t configure namespace roots at this point if offered).
