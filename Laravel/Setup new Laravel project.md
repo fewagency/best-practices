@@ -69,7 +69,7 @@ Edit **composer.json** to add this in section scripts > post-update-cmd - just b
 Edit **app/Providers/AppServiceProvider.php** and add this within the *register()* method:
 
 ```php
-if (!$this->app->environment('production')) {
+if ($this->app->environment('local')) {
   $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
 }
 ```
