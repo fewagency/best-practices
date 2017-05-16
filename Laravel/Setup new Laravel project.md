@@ -23,8 +23,16 @@ With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github
 > laravel new PROJECTNAME
 
 #### Make artisan executable (optional)
-cd into the new project directory
+- cd into the new project directory
+
 > chmod u+x artisan
+
+#### Create a fresh [`.editorconfig` file](https://github.com/fewagency/best-practices/blob/master/FEW%20code%20style.md)
+- cd into the new project directory
+
+``` bash
+curl -L https://git.io/v9bLM -o .editorconfig
+```
 
 #### Configure Homestead (if applicable)
 On your local machine:
