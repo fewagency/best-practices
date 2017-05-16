@@ -31,7 +31,7 @@ With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github
 - cd into the new project directory
 
 ``` bash
-curl -L https://git.io/v9bLM -o .editorconfig
+curl -L https://raw.githubusercontent.com/fewagency/best-practices/master/.editorconfig -o .editorconfig
 ```
 
 #### Configure Homestead (if applicable)
