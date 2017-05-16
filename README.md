@@ -4,7 +4,7 @@ A FEW ideas that make our lives easier
 [The FEW code style](FEW code style.md)
 
 ## Laravel
-* [Setup a new Laravel project](Laravel/Setup-new-Laravel-project.md)
+* [Setup a new Laravel project](Laravel/Setup%20new%20Laravel%20project.md)
 * [Configure PhpStorm for Laravel](PhpStorm/Configure PhpStorm for Laravel project.md)
 
 ## Wordpress
