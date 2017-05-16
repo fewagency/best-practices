@@ -11,6 +11,13 @@ This applies to HTML, XML, CSS, LESS, SASS, JavaScript, JSON, Blade, etc.
 ## For editors
 This repo contains an [`.editorconfig` file](/.editorconfig) that can be copied into project root directories
 to help editors keep the style consistent.
+
+Here's a quick command to pull a fresh `.editorconfig` file into your current directory:
+
+``` bash
+curl -L https://git.io/v9bLM -o .editorconfig
+```
+
 We also have a slightly more extensive [PhpStorm config](/PhpStorm/codestyle.md).
 
 ## Git
