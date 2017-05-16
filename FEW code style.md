@@ -15,7 +15,13 @@ to help editors keep the style consistent.
 Here's a quick command to pull a fresh `.editorconfig` file into your current directory:
 
 ``` bash
-curl -L https://git.io/v9bLM -o .editorconfig
+curl -L https://raw.githubusercontent.com/fewagency/best-practices/master/.editorconfig -o .editorconfig
+```
+
+or shorter:
+
+``` bash
+curl -L https://git.io/v9bcA -o .editorconfig
 ```
 
 We also have a slightly more extensive [PhpStorm config](/PhpStorm/codestyle.md).
