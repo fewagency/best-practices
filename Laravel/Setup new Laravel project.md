@@ -4,30 +4,31 @@ With [PhpStorm](https://www.jetbrains.com/phpstorm/), [Homestead](https://github
 **Note:** If you're setting up an existing Laravel project source for development or deploy, please refer to that project's readme instead of this guide.
 
 ## Prerequisites
-- **Composer** needed on your local machine for recommended Homestead install
-https://getcomposer.org/doc/00-intro.md#globally
-- **Homestead** on your local machine
-https://laravel.com/docs/master/homestead#installation-and-setup
-- **Laravel installer** on the Homestead machine
-https://laravel.com/docs/master/installation#installing-laravel
+- [Composer](https://getcomposer.org/doc/00-intro.md#globally) needed on your local machine
+- [Homestead](https://laravel.com/docs/master/homestead#installation-and-setup) or [Valet](https://laravel.com/docs/master/valet) on your local machine
+- [Laravel installer](https://laravel.com/docs/master/installation#installing-laravel)
 
 ## Steps
 
 ### Install a fresh Laravel copy
 
-ssh into Homestead
+- ssh into Homestead (if applicable)
+
 > sudo composer self-update
 
 > composer global update
 
-cd to your code/projects directory, e.g. `cd ~/Code`
+- cd to your code/projects directory, e.g. `cd ~/Code`
+
 > laravel new PROJECTNAME
 
 #### Make artisan executable (optional)
 cd into the new project directory
 > chmod u+x artisan
 
-#### On your local machine
+#### Configure Homestead (if applicable)
+On your local machine:
+
 Add the new site to your `~/Homestead/Homestead.yaml` and note the Homestead ip, and your chosen domain name. You may add a database to the config too.
 
 Then add the Homestead ip along with the chosen domain to your `/etc/hosts` file.
@@ -57,7 +58,10 @@ Add and commit all files to git
 Follow [Configure PhpStorm for a Laravel project](/PhpStorm/Configure%20PhpStorm%20for%20Laravel%20project.md)
 
 ### Configure ide-helper
-ssh into Homestead, cd to the project directory
+
+- ssh into Homestead (if applicable)
+- cd to the project directory
+
 > composer require barryvdh/laravel-ide-helper --dev
 
 Edit **composer.json** to add this in section scripts > post-update-cmd - just before `artisan optimize`:
@@ -74,13 +78,17 @@ if ($this->app->environment('local')) {
 }
 ```
 
-ssh into Homestead, cd to the project directory
+- ssh into Homestead (if applicable)
+- cd to the project directory
+
 > composer update
 
 Commit "Setup ide-helper"
 
 ### Setup Behat
-ssh into Homestead, cd to the project directory
+- ssh into Homestead (if applicable)
+- cd to the project directory
+
 > composer require behat/behat behat/mink-extension laracasts/behat-laravel-extension --dev
 
 > vendor/bin/behat --init
@@ -147,7 +155,9 @@ Artisan::call('migrate');
 Commit "Setup PHPUnit"
 
 ### Optional: Namespace the application
-ssh into Homestead, cd to the project directory
+- ssh into Homestead if applicable
+- cd to the project directory
+
 > php artisan app:name APPNAME
 
 …and commit "Namespace app"
