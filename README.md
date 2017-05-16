@@ -1,11 +1,11 @@
 # best-practices
 A FEW ideas that make our lives easier
 
-[The FEW code style](FEW code style.md)
+[The FEW code style](FEW%20code%20style.md)
 
 ## Laravel
 * [Setup a new Laravel project](Laravel/Setup%20new%20Laravel%20project.md)
-* [Configure PhpStorm for Laravel](PhpStorm/Configure PhpStorm for Laravel project.md)
+* [Configure PhpStorm for Laravel](PhpStorm/Configure%20PhpStorm%20for%20Laravel%20project.md)
 
 ## Wordpress
 * [Basic stuff](Wordpress/index.md)
