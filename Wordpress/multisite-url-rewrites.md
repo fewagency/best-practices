@@ -6,7 +6,8 @@ tells you to add URL rewrite rules, but they're for **Apache** using `.htaccess`
 ## Valet
 For [Laravel Valet](http://laravel.com/docs/valet) we have created
 [a driver file](WordPressMultisiteValetDriver.php)
-that you can drop into your `~/.config/valet/Drivers/`.
+that you can drop into your `~/.config/valet/Drivers/`  
+(before v2.1.0 Valet drivers path was at `~/.valet/Drivers/`)
 
 ## Homestead
 [Laravel Homestead's](http://laravel.com/docs/homestead) Nginx configuration can be extended using this nifty trick inspired by [Otley](https://laracasts.com/@otley)'s
